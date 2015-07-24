@@ -465,7 +465,7 @@ footer .footer-below {
 	text-align:center;
 	margin-right:0.33em;
 }
-.btn-aula:hover{
+.btn-aula: hover{
 	background-color:#0CF;
 	border-radius:10px;
 	}
