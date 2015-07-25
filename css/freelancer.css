@@ -16,6 +16,10 @@ p.small {
     font-size: 16px;
 }
 
+a{
+    transition: color .25s ease-in-out;
+}
+
 a,
 a:hover,
 a:focus,
@@ -459,13 +463,25 @@ footer .footer-below {
 }
 /*Added by Csharls */
 .hidden{z-index:-1;}
+
 .btn-aula{
 	background-color:#09F;
 	border-radius:5px;
 	text-align:center;
+    padding: 1.4em;
 	margin-right:0.33em;
+    transition: background-color .25s ease-in-out;
 }
-.btn-aula: hover{
-	background-color:#0CF;
-	border-radius:10px;
-	}
+.btn-aula:hover{
+    background-color: #07F;
+    color: #fff;
+    border-radius:10px;
+}
+p a{
+    color: #fff;
+    transition: color .25s ease-in-out;
+}
+p a:hover{
+    color:#18bc9c;
+    text-decoration: none;
+};
