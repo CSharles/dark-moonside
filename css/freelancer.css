@@ -143,11 +143,11 @@ header .intro-text .skills {
     }
 
     .navbar-fixed-top.navbar-shrink {
-        padding: 10px 0;
+        padding: 15px 0;
     }
 
     .navbar-fixed-top.navbar-shrink .navbar-brand {
-        font-size: 1.5em;
+        font-size: 2em;
     }
 }
 
@@ -205,6 +205,12 @@ section.success a.active {
     section.first {
         padding-top: 75px;
     }
+.btn-aula{
+    background-color:none;
+    border-radius:none;
+    padding:0;
+    margin-right:0;
+    }   
 }
 
 #portfolio .portfolio-item {
@@ -484,4 +490,13 @@ p a{
 p a:hover{
     color:#18bc9c;
     text-decoration: none;
-};
+}
+span a{
+    color: #9ba;
+    padding-left: 35%;
+    transition: color .25s ease-in-out;
+}
+span a:hover{
+    color:#18bc9c;
+    text-decoration: none;
+}
