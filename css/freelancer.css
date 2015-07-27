@@ -204,13 +204,7 @@ section.success a.active {
 
     section.first {
         padding-top: 75px;
-    }
-.btn-aula{
-    background-color:none;
-    border-radius:none;
-    padding:0;
-    margin-right:0;
-    }   
+    } 
 }
 
 #portfolio .portfolio-item {
@@ -470,18 +464,25 @@ footer .footer-below {
 /*Added by Csharls */
 .hidden{z-index:-1;}
 
-.btn-aula{
-	background-color:#09F;
-	border-radius:5px;
-	text-align:center;
-    padding: 1.4em;
-	margin-right:0.33em;
-    transition: background-color .25s ease-in-out;
-}
-.btn-aula:hover{
-    background-color: #07F;
-    color: #fff;
-    border-radius:10px;
+@media only screen and (min-width:500px) {
+    .btn-aula{
+    	background-color:#09F;
+    	border-radius:5px;
+    	text-align:center;
+        padding: 1.4em;
+    	margin-right:0.33em;
+        transition: background-color .25s ease-in-out;
+    }
+    .btn-aula:hover{
+        background-color: #07F;
+        color: #fff;
+        border-radius:10px;
+    }
+    span a{
+    color: #9ba;
+    padding-left: 35%;
+    transition: color .25s ease-in-out;
+    }
 }
 p a{
     color: #fff;
@@ -490,11 +491,6 @@ p a{
 p a:hover{
     color:#18bc9c;
     text-decoration: none;
-}
-span a{
-    color: #9ba;
-    padding-left: 35%;
-    transition: color .25s ease-in-out;
 }
 span a:hover{
     color:#18bc9c;
