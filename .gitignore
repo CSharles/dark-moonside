@@ -1,5 +1,6 @@
 .vscode/launch.json
 .vscode/settings.json
 vendor/*
-composer.*
+composer.lock
+composer.phar
 src/*
