@@ -2,4 +2,5 @@
 .vscode/settings.json
 vendor/*
 composer.phar
-src/*
+src/Test/*
+.env

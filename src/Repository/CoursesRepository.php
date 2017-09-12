@@ -7,7 +7,6 @@ class CourseRepository
     
     public function __construct()
     {
-        
         $this->pdo=new PDO('mysql:host=localhost;dbname=gamebook_test','root',null);
     }
     public function findById($id)
