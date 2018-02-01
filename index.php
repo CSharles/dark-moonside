@@ -5,7 +5,10 @@
 // $password="admin";
 // $users=$UserRepo->showUsers();
 // var_dump($users);
+require __DIR__ ."/vendor/autoload.php";
 
+$app = new Silex\Application();
+$app['debug'] = true;
 $dbopts = parse_url(getenv('DATABASE_URL'));
 $app->register(new Csanquer\Silex\PdoServiceProvider\Provider\PDOServiceProvider('pdo'),
                array(
@@ -35,6 +38,7 @@ $app->get('/db/', function() use($app) {
     'names' => $names
   ));
 });
+$app->run();
 ?>
 
 
