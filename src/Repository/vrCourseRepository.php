@@ -4,10 +4,12 @@ require __DIR__ ."/../Entity/Link.php";
 class CourseRepository
 {
     protected $pdo;
+    private $user;
+    private $pass;
     
     public function __construct()
     {
-        $this->pdo=new PDO('mysql:host=localhost;dbname=gamebook_test','root',null);
+        $this->pdo=new PDO("pgsql:host=localhost;port=5432;dbname=virtualroom;user=this->$user;password=$this->pass");
     }
     public function findById($id)
     {
