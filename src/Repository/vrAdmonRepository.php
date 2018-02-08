@@ -5,22 +5,24 @@
    require __DIR__ ."/../Entity/vrModule.php";
 class vrAdmonRepository
 {
-    protected $pdo;
+   protected $pdo;
 
-    public function __construct($user,$pass) 
+    public function __construct($user=NULL,$pass=NULL) 
     {
         //$dbopts = parse_url(getenv('DATABASE_URL'));
         $dbopts=array("host"=>"localhost","port"=>5432,"path"=>"/virtualroom"); 
         $dsn = 'pgsql:
-                host=$dbopts["host"];
-                port=$dbopts["port"];
-                dbname=ltrim($dbopts["path"],"/");
-                user=$user;password=$pass';
-        try{
-           $this->pdo= new PDO($dsn);
-        }catch (PDOException $e){
-            echo $e->getMessage();
-        }
+                host='.$dbopts["host"].';
+                port='.$dbopts["port"].';
+                dbname='.ltrim($dbopts["path"],"/");
+        $default_options = [
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES => false,
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+        ];
+        //$options = array_replace($default_options, $options);
+        //parent::__construct($dsn, $username, $password, $default_options);    
+           $this->pdo= new PDO($dsn,$user,$pass,$default_options);
     }
     //Return true if the link was succesuflly added, otherwise false.
     public function addLink($name, $url, $moduleID)
@@ -29,19 +31,20 @@ class vrAdmonRepository
             'REPLACE INTO admon."vrLink" ("Description", "URL", "ModuleID") VALUES(?, ?, ?)');
         return $statement->execute([$name, $url, $moduleID]);
     }
-    public function addCourse($name, $courseID)
+    public function addCourse($course)
     {
         $statement=$this->pdo->prepare(
-            'REPLACE INTO admon."vrCourse" ("Name", "CourseID") VALUES(?, ?)');
-        return $statement->execute([$name, $courseID]);
+            'INSERT INTO admon."vrCourse" ("Name", "CourseID") VALUES(?, ?)');
+        return $statement->execute([$course->getName(), $course->getCourseID()]);
     }
-    public function addModule($name,$moduleID, $courseID)
+    public function addModule($module)
     {
         $statement=$this->pdo->prepare(
-            'REPLACE INTO admon."vrModule" ("Name", "ModuleID","CourseID") VALUES(?, ?, ?)');
-        return $statement->execute([$name, $moduleID, $courseID]);
+            'INSERT INTO admon."vrModule" ("Name", "ModuleID", "CourseID") VALUES(?, ?, ?)');
+        return $statement->execute([$module->getName(), $module-getModuleID(), $module->getCourseID()]);
     }
-    public function getLinksByModuleID($moduleID)
+    //getters
+    public function getLinkByModuleID($moduleID)
     {
         $statement=$this->pdo->prepare(
             'Select * from admon."vrLink" Where ModuleID=?');
@@ -50,10 +53,27 @@ class vrAdmonRepository
     public function getModuleByID($moduleID)
     {
         $statement=$this->pdo->prepare(
-            'Select * from admon."vrModule" Where ModuleID=?');
-        return $statement->execute([$moduleID]);
-        $module = $statement->fetchObject('vrModule');
-        return $game;
+            'Select * from admon."vrModule" Where "ModuleID"=?');
+        return $statement->execute([$moduleID])->fetchObject('vrModule');
+    }
+    public function getCourseByID($courseID)
+    {
+        $statement=$this->pdo->prepare(
+            'Select * from admon."vrCourse" WHERE "CourseID" LIKE ?');
+        $statement->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'vrCourse');
+        $statement->execute([$courseID]);
+        $course = $statement->fetchObject('vrCourse',[$courseID]);
+        return $course;
+    }
+    public function run($sql, $args = NULL)
+    {
+        if (!$args)
+        {
+             return $this->pdo->query($sql);
+        }
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($args);
+        return $stmt;
     }
 
 }
