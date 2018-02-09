@@ -44,11 +44,12 @@ class vrAdmonRepository
         return $statement->execute([$module->getName(), $module->getModuleID(), $module->getCourseID()]);
     }
     //getters
-    public function getLinkByModuleID($moduleID)
+    public function getLinksByModuleID($moduleID)
     {
         $statement=$this->pdo->prepare(
-            'Select * from admon."vrLink" Where ModuleID=?');
-        return $statement->execute([$moduleID]);
+            'Select * from admon."vrLink" Where "ModuleID"=?');
+        $statement->execute([$moduleID]);
+        return $statement->fetchAll(PDO::FETCH_CLASS,'vrLink');
     }
     public function getModuleByID($moduleID)
     {
@@ -66,7 +67,7 @@ class vrAdmonRepository
         $course = $statement->fetchObject('vrCourse',[$courseID]);
         return $course;
     }
-    public function run($sql, $args = NULL)
+    private function run($sql, $args = NULL)
     {
         if (!$args)
         {
@@ -75,6 +76,10 @@ class vrAdmonRepository
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($args);
         return $stmt;
+    }
+    public function getCourseData($courseID)
+    {
+        
     }
 
 }

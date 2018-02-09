@@ -3,7 +3,7 @@ class vrCourse
 {
     protected $Name;
     //protected $imagePath;
-    protected $linksArray;
+    protected $Modules;
     protected $CourseID;
     public function __construct($id=null)
     {
@@ -13,9 +13,9 @@ class vrCourse
     {
         return $this->CourseID;
     }
-    public function getLinks()
+    public function getModules()
     {
-        return $linksArray;
+        return $Modules;
     }
     public function getName()
     {
@@ -54,8 +54,8 @@ class vrCourse
     // {
     //     $this->imagePath=$value;
     // }
-    public function setLinks($value)
+    public function setModules($value)
     {
-        $this->linksArray=$value;
+        $this->Modules=$value;
     }
 }
