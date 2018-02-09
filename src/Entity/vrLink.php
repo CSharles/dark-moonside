@@ -1,17 +1,16 @@
 <?php
 class vrLink
 {
-    protected $description;
+    protected $Description;
     protected $URL;
-    protected $moduleID;
+    protected $ModuleID;
 
     public function __construct()
     {
-
     }
     public function getDescription()
     {
-        return $this->description;
+        return $this->Description;
     }
     public function getURL()
     {
@@ -19,21 +18,21 @@ class vrLink
     }
     public function getModuleID()
     {
-        return $this->moduleID;
+        return $this->ModuleID;
     }
    
     public function toArray()
     {
         $array= [
-            'description'=> $this->getDescription(),
+            'Description'=> $this->getDescription(),
             'URL'=> $this->getURL(),
-            'moduleID'=>$this->getModuleID(),
+            'ModuleID'=>$this->getModuleID(),
         ];
         return $array;
     }
     public function setDescription($value)
     {
-        $this->description=$value;
+        $this->Description=$value;
     }
     public function setURL($value)
     {
@@ -41,6 +40,6 @@ class vrLink
     }
     public function setModuleID($value)
     {
-        $this->moduleID=$value;
+        $this->ModuleID=$value;
     }
 }

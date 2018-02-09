@@ -25,11 +25,11 @@ class vrAdmonRepository
            $this->pdo= new PDO($dsn,$user,$pass,$default_options);
     }
     //Return true if the link was succesuflly added, otherwise false.
-    public function addLink($name, $url, $moduleID)
+    public function addLink($link)
     {
         $statement=$this->pdo->prepare(
-            'REPLACE INTO admon."vrLink" ("Description", "URL", "ModuleID") VALUES(?, ?, ?)');
-        return $statement->execute([$name, $url, $moduleID]);
+            'INSERT INTO admon."vrLink" ("Description", "URL", "ModuleID") VALUES(?, ?, ?)');
+        return $statement->execute([$link->getDescription(), $link->getURL(), $link->getModuleID()]);
     }
     public function addCourse($course)
     {
@@ -41,7 +41,7 @@ class vrAdmonRepository
     {
         $statement=$this->pdo->prepare(
             'INSERT INTO admon."vrModule" ("Name", "ModuleID", "CourseID") VALUES(?, ?, ?)');
-        return $statement->execute([$module->getName(), $module-getModuleID(), $module->getCourseID()]);
+        return $statement->execute([$module->getName(), $module->getModuleID(), $module->getCourseID()]);
     }
     //getters
     public function getLinkByModuleID($moduleID)
@@ -52,9 +52,10 @@ class vrAdmonRepository
     }
     public function getModuleByID($moduleID)
     {
-        $statement=$this->pdo->prepare(
-            'Select * from admon."vrModule" Where "ModuleID"=?');
-        return $statement->execute([$moduleID])->fetchObject('vrModule');
+        $statement=$this->pdo->prepare('Select * from admon."vrModule" Where "ModuleID"=?');
+        $statement->setFetchMode(PDO::FETCH_CLASS,'vrModule');
+        $statement->execute([$moduleID]);
+        return $statement->fetchObject('vrModule');
     }
     public function getCourseByID($courseID)
     {

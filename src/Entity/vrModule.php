@@ -12,7 +12,7 @@ class vrModule
     {
         return $this->Name;
     }
-    public function getcourseID()
+    public function getCourseID()
     {
         return $this->CourseID;
     }
