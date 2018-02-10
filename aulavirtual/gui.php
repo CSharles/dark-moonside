@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
     <head>
         <meta charset="utf-8">
@@ -37,6 +37,17 @@
                             <hr class="star-light">
                             <span class="name">Guias</span>
                             <hr class="star-light">
+                            <?php
+                            require __DIR__ ."/vendor/autoload.php";
+                            require __DIR__ . "/src/Repository/UserRepository.php";
+                             
+                            $UserRepo = new vrAdmonRepository();
+                            $links=$UserRepo->getLinksByModuleID('GUI101');
+
+                                
+                                foreach ($links as $link):?>
+                                <p><a href="<?php echo $link->getURL();?>"><?php echo $link->getDescription();?></a></p>
+                            <?php endforeach?>
                             <p><a href="https://docs.google.com/document/d/1HBupuGHhVI7f7eC5R8GVkFAuhYyH2gNGKRiI2dyUCac/edit?usp=sharing">GUI - Interfaces de Usuario</a></p>
                             <p><a href="https://docs.google.com/document/d/1ncTNzlQYkZYwK2BoXrzPMTTmMKJYZ0KCPd4cQiIjqCM/edit?usp=sharing">GUI - Múltiples ventanas</a></p>
                             <p><a href="https://docs.google.com/document/d/1_pjFl3EJp5tQ4V10XRVwtbsCZY6EOGQdLuM26QQZRoo/edit?usp=sharing">GUI - Delegados y Eventos</a></p>
