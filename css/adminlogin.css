@@ -1,0 +1,108 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300);
+body {
+    background: -webkit-radial-gradient(#414141 10%, #111);
+    background: -moz-radial-gradient(#414141 10%, #111);
+    background: radial-gradient(#414141 10%, #111);
+    font-family: 'Open Sans', sans-serif!important;
+    font-size: 12px; 
+}
+.centro{
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+  min-height: 24em;
+  height: 100vh;
+  flex-direction: column-reverse;
+}
+/* Firefox < 16 */
+@-moz-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Internet Explorer */
+@-ms-keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadein {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.well{
+    background-color:#fff!important;
+    border-radius:0!important;
+    border:none!important;
+    padding: 19px;
+}
+
+.well.login-box {
+    width:300px;
+    display:block;
+    -webkit-animation: fadein 3s; /* Safari, Chrome and Opera > 12.1 */
+    -moz-animation: fadein 3s; /* Firefox < 16 */
+     -ms-animation: fadein 3s; /* Internet Explorer */
+      -o-animation: fadein 3s; /* Opera < 12.1 */
+         animation: fadein 3s;
+         
+}
+.well.login-box legend {
+  font-size:24px;
+  text-align:center;
+  font-weight:400;
+  border-bottom: 1px solid #e5e5e5;
+  color: #333;
+}
+.well.login-box label {
+  font-weight:300;
+  font-size:14px;
+  
+}
+.well.login-box input[type="text"] {
+  box-shadow:none;
+  border-color:#ddd;
+  border-radius:0;
+}
+
+
+/* Notifications */
+
+.notification{
+    position:fixed;
+    top: 20px;
+    right:0;
+    background-color:#FF4136;
+    padding: 20px;
+    color: #fff;
+    font-size:21px;
+    display: none;
+
+}
+.notification-success{
+  background-color:#3D9970;
+}
+
+.notification-show{
+    display:block!important;
+}
+
+/*Loged in*/
+.logged-in{
+  position:fixed;
+  top: 20px;
+  padding: 20px;
+  right:0;
+  display: none;
+}
+.logged-in h1{
+  margin:0;
+  font-size:21px;
+}

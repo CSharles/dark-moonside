@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ES">
+    <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"	integrity="sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E="	crossorigin="anonymous"></script>
+        
+        <link rel="stylesheet" href="../css/adminlogin.css">
+        <script src="../js/adminlogin.js"></script>
+        
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Englishcomputer - Login - </title>
+        <meta name="author" content="Csharls">
+    </head>
+    <body>
+        <section class="centro">
+            <div class="logged-in well">
+                <h1>Has iniciado sesión </h1>
+            </div>
+            <div class="notification login-alert">
+                Introduce tu usuario y contraseña.
+            </div>
+            <div class="notification notification-success logged-out">
+                Has salido de tu cuenta con exito.
+            </div>
+            <div class="well login-box">
+                <form action="">
+                    <legend>Incio de sesion</legend>
+                    <div class="form-group">
+                        <label for="username-email">Correo o nombre de Usuario</label>
+                        <input value='' id="username-email" placeholder="Correo o usuario" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">contraseña</label>
+                        <input id="password" value='' placeholder="contraseña" type="text" class="form-control" />
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-danger btn-cancel-action">Cancelar</button>
+                        <input type="submit" class="btn btn-success btn-login-submit" value="Entrar" onclick="verifyLogin();return false;"/>
+                    </div>
+                </form>
+            </div>
+        </section> 
+
+    </body>
+</html>
