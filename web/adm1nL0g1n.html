@@ -19,13 +19,13 @@
     </head>
     <body>
         <section class="centro">
-            <div class="logged-in well">
+            <div id ="successInMsg" class="logged-in well">
                 <h1>Has iniciado sesión </h1>
             </div>
-            <div class="notification login-alert">
+            <div id="failMessage" class="notification login-alert">
                 Introduce tu usuario y contraseña.
             </div>
-            <div class="notification notification-success logged-out">
+            <div id="SuccessOutMsg" class="notification notification-success logged-out">
                 Has salido de tu cuenta con exito.
             </div>
             <div class="well login-box">
@@ -37,7 +37,7 @@
                     </div>
                     <div class="form-group">
                         <label for="password">contraseña</label>
-                        <input id="password" value='' placeholder="contraseña" type="text" class="form-control" />
+                        <input id="password" value='' placeholder="contraseña" type="password" class="form-control" />
                     </div>
                     <div class="form-group text-center">
                         <button class="btn btn-danger btn-cancel-action">Cancelar</button>
@@ -46,6 +46,5 @@
                 </form>
             </div>
         </section> 
-
     </body>
 </html>

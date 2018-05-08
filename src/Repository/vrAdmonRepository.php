@@ -6,6 +6,7 @@
 class vrAdmonRepository
 {
    protected $pdo;
+   protected $error;
 
     public function __construct($user=NULL,$pass=NULL) 
     {
@@ -21,8 +22,20 @@ class vrAdmonRepository
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         ];
         //$options = array_replace($default_options, $options);
-        //parent::__construct($dsn, $username, $password, $default_options);    
+        //parent::__construct($dsn, $username, $password, $default_options); 
+        try{   
            $this->pdo= new PDO($dsn,$user,$pass,$default_options);
+        }catch (PDOexception $e){
+            $this->error= array("message"=>$e->getMessage(),"code"=>$e->getCode());
+        }
+    }
+    public function hasError()
+    {
+        return ($this->error!=null?true:false);
+    }
+    public function getError()
+    {
+        return $this->error;
     }
     //Return true if the link was succesuflly added, otherwise false.
     public function addLink($link)
@@ -67,7 +80,7 @@ class vrAdmonRepository
         $course = $statement->fetchObject('vrCourse',[$courseID]);
         return $course;
     }
-    private function run($sql, $args = NULL)
+    public function run($sql, $args = NULL)
     {
         if (!$args)
         {
