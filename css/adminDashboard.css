@@ -21,20 +21,33 @@ aside p{
 }
 section{
     display: inline-block;
-    width: 100%;
-    max-width: 70%;
+    width: 80%;
     margin: 20px 0 0 40px;
 }
 section article{
     margin: 0 0 100px 0;
-}
-
-.occult{
-    display: none;
 }
 header h1{
     color: #fff;
 }
 header p{
     color: #aaa;
+}
+
+.inline{
+    display: inline-block;
+}
+.occult{
+    display: none;
+}
+#data{
+    width: 70%;
+    max-width: 800px;
+    min-width: 400px;
+}
+.controls{
+    padding: 20px 0 0;
+}
+.controls>.btn {
+    margin-top: 10px;
 }

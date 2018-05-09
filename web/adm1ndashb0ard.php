@@ -45,10 +45,33 @@ if(!isset($_SESSION["user"])):?>
                         <h1>Cursos</h1>
                         <p>Administrar los cursos</p>
                     </header>
-                    <div>
-                        
+                    <div id="data" class="inline">
+                    <table class="table table-striped table-dark table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Id</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $repo= new vrAdmonRepository("vrAdmin","vradmin23");
+                            if(!$repo->hasError()):
+                            $data = $repo->run('select * from admon."vrCourse"');
+                            foreach( $data as $course):?>
+                            <tr>
+                                <td><?php echo $course["Name"] ;?></td>
+                                <td><?php echo $course["CourseID"];?></td>
+                               
+                            </tr>
+                            <?php endforeach;
+                            else:
+                                echo "nada";
+                            endif;?>
+                        </tbody>
+                    </table>    
                     </div>
-                        <aside>
+                        <aside class="controls inline">
                         <a href="#" class="btn btn-primary">Nuevo curso</a>
                         <a href="#" class="btn btn-info">Editar curso</a>
                         <a href="#" class="btn btn-danger">Eliminar curso</a>
