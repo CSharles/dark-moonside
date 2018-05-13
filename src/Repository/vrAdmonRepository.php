@@ -7,6 +7,7 @@ class vrAdmonRepository
 {
    protected $pdo;
    protected $error;
+   protected $errorDb;
 
     public function __construct($user=NULL,$pass=NULL) 
     {
@@ -33,9 +34,24 @@ class vrAdmonRepository
     {
         return ($this->error!=null?true:false);
     }
+    public function hasErrorDb()
+    {
+        return ($this->errorDb!=null?true:false);        
+    }
     public function getError()
     {
         return $this->error;
+    }
+    public function getErrorDb($element)
+    {
+        if($element=="code"){
+            return $this->errorDb["code"];
+
+        }
+        if($element=="message"){
+            return $this->errorDb["message"];
+        }
+        
     }
     //Return true if the link was succesuflly added, otherwise false.
     public function addLink($link)
@@ -46,9 +62,21 @@ class vrAdmonRepository
     }
     public function addCourse($course)
     {
-        $statement=$this->pdo->prepare(
-            'INSERT INTO admon."vrCourse" ("Name", "CourseID") VALUES(?, ?)');
-        return $statement->execute([$course->getName(), $course->getCourseID()]);
+        try{
+            $statement=$this->pdo->prepare(
+                'INSERT INTO admon."vrCourse" ("Name", "CourseID") VALUES(?, ?)');
+            return $statement->execute([$course->getName(), $course->getCourseID()]);
+        }
+        catch(PDOexception $e){
+            if(strstr($e->getMessage(), 'SQLSTATE[')) {
+               $match= preg_match("/SQLSTATE\[(\w+)\]:(.*):(.*)/", $e->getMessage(), $matches);
+                if($match>0){
+                    $code = ($matches[1] == 'HT000' ? $matches[2] : $matches[1]);
+                    $message = $matches[3];
+                    $this->errorDb=array("message"=>$message,"code"=>$code);
+                }
+            }  
+        }
     }
     public function addModule($module)
     {
@@ -94,7 +122,6 @@ class vrAdmonRepository
     {
         
     }
-
 }
 
 

@@ -6,48 +6,48 @@ body {
     font-family: 'Open Sans', sans-serif!important; 
     height: 100vh;
 }
-aside{
-    width: 15%;
-    max-width: 20%;
-    min-width: 180px;
-    display: inline-block;
-    padding: 40px 0 0;
-    vertical-align: top;
-    height: 100vh;
-}
 aside p{
     text-align: center;
-    color: #fff;
 }
 section{
-    display: inline-block;
     width: 80%;
     margin: 20px 0 0 40px;
 }
 section article{
     margin: 0 0 100px 0;
 }
-header h1{
+aside p, header h1, header p{
     color: #fff;
 }
-header p{
+header h2{
     color: #aaa;
 }
-
+header p{
+    margin: 0 auto;
+}
 .inline{
     display: inline-block;
 }
 .occult{
     display: none;
 }
+#side-panel{
+    width: 15%;
+    max-width: 20%;
+    min-width: 180px;
+    padding: 40px 0 0;
+    vertical-align: top;
+    height: 100vh;
+}
 #data{
-    width: 70%;
     max-width: 800px;
     min-width: 400px;
 }
+
 .controls{
-    padding: 20px 0 0;
+    padding: 0 0 0 20px;
 }
 .controls>.btn {
     margin-top: 10px;
+    display: block;
 }
