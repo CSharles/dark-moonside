@@ -1,4 +1,4 @@
-            <table class="table table-striped table-dark table-hover">
+           <table class="table table-striped table-dark table-hover">
                 <thead class="thead-light">
                     <tr>
                         <th>Nombre</th>
@@ -8,8 +8,8 @@
                 <tbody>
                     <?php foreach( $data as $course):?>
                     <tr>
-                        <td><?php echo $course["Name"] ;?></td>
-                        <td><?php echo $course["CourseID"];?></td>
+                        <td>{$course["Name"]}</td>
+                        <td>{$course["CourseID"]}</td>
                     </tr>
                     <?php endforeach;?>         
                 </tbody>
@@ -18,5 +18,4 @@
                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
                 <li class="page-item"><a class="page-link active" href="#">1</a></li>
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
-            </ul> 
-
+            </ul>

@@ -1,7 +1,6 @@
 <?php
 session_start();
 require __DIR__ ."/../src/Controller/vrAdmonController.php";
-$controler= new vrAdmonController();
 if(!isset($_SESSION["user"])):?>
 
     <!DOCTYPE html>

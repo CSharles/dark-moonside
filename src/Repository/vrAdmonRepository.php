@@ -42,16 +42,16 @@ class vrAdmonRepository
     {
         return $this->error;
     }
-    public function getErrorDb($element)
+    public function getErrorDb(string $element=null)
     {
-        if($element=="code"){
+        switch ($element){
+            case "code":
             return $this->errorDb["code"];
-
-        }
-        if($element=="message"){
+            case "message":
             return $this->errorDb["message"];
-        }
-        
+           default:
+            return $this->errorDb;
+        }        
     }
     //Return true if the link was succesuflly added, otherwise false.
     public function addLink($link)
