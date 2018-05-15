@@ -31,6 +31,9 @@ header p{
 .occult{
     display: none;
 }
+.selected{
+    background: #558;
+}
 #side-panel{
     width: 15%;
     max-width: 20%;

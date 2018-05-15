@@ -6,12 +6,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach( $data as $course):?>
-                    <tr>
+                    <?php foreach( $data as $course): 
+                   echo"<tr onclick=".'"setSelection(this)"'.">
                         <td>{$course["Name"]}</td>
                         <td>{$course["CourseID"]}</td>
-                    </tr>
-                    <?php endforeach;?>         
+                    </tr>";
+                    endforeach;?>         
                 </tbody>
             </table>
             <ul class="pagination justify-content-end">

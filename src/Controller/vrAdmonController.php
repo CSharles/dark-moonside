@@ -32,6 +32,9 @@ class vrAdmonController
             return $error["message"];
         }
     }
+    public function editCourse(vrCourse $course){
+        
+    }
 }
 $controler= new vrAdmonController();
 if(isset($_POST["name"])&&isset($_POST["courseID"])){

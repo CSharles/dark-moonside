@@ -1,14 +1,15 @@
-$('tr').click(function () {
-    $('tr').removeClass('selected');
-    $(this).addClass('selected');
+function setSelection(row){
+    if ($(row).hasClass("selected")){
+        $(row).removeClass("selected");
+    }else{
 
-    selectedRow = $(this);
-
-});
-
-$("#otherButton").click(function () {
-    var td = $(selectedRow).children('td');
-    for (var i = 0; i < td.length; ++i) {
-        alert(i + ': ' + td[i].innerText);
+        $(row).addClass("selected").siblings().removeClass("selected");
     }
-});
+}
+$(document).ready(function() {
+$('#editarCurso').click(function () {
+    var td = $( ".selected" ).children();
+    $( "h4[data-id='modaltitle']" ).text( "Editar curso" );
+    $( "#course-name" ).val( $( td[0] ).text() );
+    $( "#course-id" ).val( $( td[1] ).text() );
+})});
