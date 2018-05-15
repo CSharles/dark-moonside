@@ -10,6 +10,9 @@ $(document).ready(function() {
 $('#editarCurso').click(function () {
     var td = $( ".selected" ).children();
     $( "h4[data-id='modaltitle']" ).text( "Editar curso" );
+    var btn=$( "#add-update").text("Actualizar");
+    btn.removeClass("btn-primary");
+    btn.addClass("btn-warning");
     $( "#course-name" ).val( $( td[0] ).text() );
     $( "#course-id" ).val( $( td[1] ).text() );
 })});

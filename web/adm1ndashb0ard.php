@@ -78,7 +78,7 @@ if(!isset($_SESSION["user"])):?>
                                             <label for="course-id">Id del curso</label>
                                             <input name="courseID" id="course-id" value='' placeholder="Id" type="text" class="form-control" />
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Agregar</button>
+                                        <button type="submit" id="add-update" class="btn btn-primary">Agregar</button>
                                     </form>
                                 </div>
                                 

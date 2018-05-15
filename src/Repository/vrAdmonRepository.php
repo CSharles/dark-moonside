@@ -64,7 +64,8 @@ class vrAdmonRepository
     {
         try{
             $statement=$this->pdo->prepare(
-                'INSERT INTO admon."vrCourse" ("Name", "CourseID") VALUES(?, ?)');
+                'INSERT INTO admon."vrCourse" ("Name", "CourseID") VALUES(:name, :id)
+                ON CONFLICT ("CourseID") DO UPDATE SET "Name" = :name');
             return $statement->execute([$course->getName(), $course->getCourseID()]);
         }
         catch(PDOexception $e){
