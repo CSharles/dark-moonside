@@ -32,7 +32,7 @@ header p{
     display: none;
 }
 .selected{
-    background: #558;
+    background: #558!important;
 }
 #side-panel{
     width: 15%;
@@ -42,7 +42,7 @@ header p{
     vertical-align: top;
     height: 100vh;
 }
-#data{
+.table-wrapper{
     max-width: 800px;
     min-width: 400px;
 }

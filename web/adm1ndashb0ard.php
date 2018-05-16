@@ -48,19 +48,22 @@ if(!isset($_SESSION["user"])):?>
                         <h2>Administrar los cursos</h2>
                         <p>Vista general de los cursos</p>
                     </header>
-                    <div id="data" class="inline">
-                        <?php echo $controler->getTable();?>
+                    <div id="data" class="table-wrapper inline">
+                        <?php $controler->getCoursesTable();?>
                     </div>
                     <aside class="controls inline">
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCourse">Nuevo curso</button>
-                        <button type="button" id="editarCurso" class="btn btn-info" data-toggle="modal" data-target="#newCourse">Editar curso</button>
-                        <a href="#" class="btn btn-danger">Eliminar curso</a>
+                        <button type="button" class="btn btn-info" id="editarCurso" data-toggle="modal" data-target="#newCourse">Editar curso</button>
+                        <button type="button" class="btn btn-danger" id="eliminarCurso">Eliminar curso</button>
+                        <form action="" method="post" id="deleteForm" class="occult">
+                            <input name="deleteID" type="text" value='' />
+                        </form>
                     </aside>
                     <!-- The Modal -->
                     <div class="modal fade" id="newCourse" tabindex="-1" role="dialog">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                            
+
                                 <!-- Modal Header -->
                                 <div class="modal-header">
                                     <h4 data-id="modaltitle" class="modal-title">Nuevo curso</h4>
@@ -94,11 +97,58 @@ if(!isset($_SESSION["user"])):?>
                 <article id="modules">
                     <header>
                         <h1>Modulos</h1>
-                        <p>Administrar los modulos</p>
+                        <h2>Administrar los modulos</h2>
+                        <p>Vista general de los modulos</p>
                     </header>
-                    <a href="#" class="btn btn-primary">Nuevo modulo</a>
-                    <a href="#" class="btn btn-info">Editar modulo</a>
-                    <a href="#" class="btn btn-danger">Eliminar modulo</a>
+                    <div id="module-data" class="table-wrapper inline">
+                        <?php $controler->getModulesTable();?>
+                    </div>
+                    <aside class="controls inline">
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCourse">Nuevo modulo</button>
+                        <button type="button" class="btn btn-info" id="editar-modulo" data-toggle="modal" data-target="#newCourse">Editar modulo</button>
+                        <button type="button" class="btn btn-danger" id="eliminar-modulo">Eliminar modulo</button>
+                        <form action="" method="post" class="occult" id="deleteForm">
+                            <input type="text" name="deleteID" value=''/>
+                        </form>
+                    </aside>
+                    <!-- The Modal -->
+                    <div class="modal fade" id="newModule" tabindex="-1" role="dialog">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+
+                                <!-- Modal Header -->
+                                <div class="modal-header">
+                                    <h4 data-id="modaltitle" class="modal-title">Nuevo Modulo</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                </div>
+                                
+                                <!-- Modal body -->
+                                <div class="modal-body">
+                                    <form action="" method="post">
+                                        <div class="form-group">
+                                            <label for="module-name">Nombre del modulo</label>
+                                            <input name="name" id="module-name" value='' placeholder="Nombre del curso" type="text" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="module-id">Código del modulo</label>
+                                            <input name="moduleId" id="module-id" value='' placeholder="Código del modulo" type="text" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="course-id">Código del Curso</label>
+                                            <input name="courseId" id="course-id" value='' placeholder="Código del curso" type="text" class="form-control" />
+                                        </div>                                        
+                                        <button type="submit" id="add-update" class="btn btn-primary">Agregar</button>
+                                    </form>
+                                </div>
+                                
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>                     
                 </article>
                 <article id="guides">
                     <header>

@@ -7,10 +7,10 @@
                 </thead>
                 <tbody>
                     <?php foreach( $data as $course): 
-                   echo"<tr onclick=".'"setSelection(this)"'.">
+                  print( "<tr onclick=".'"setSelection(this)"'.">
                         <td>{$course["Name"]}</td>
                         <td>{$course["CourseID"]}</td>
-                    </tr>";
+                    </tr>");
                     endforeach;?>         
                 </tbody>
             </table>

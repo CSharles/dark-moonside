@@ -69,14 +69,7 @@ class vrAdmonRepository
             return $statement->execute([$course->getName(), $course->getCourseID()]);
         }
         catch(PDOexception $e){
-            if(strstr($e->getMessage(), 'SQLSTATE[')) {
-               $match= preg_match("/SQLSTATE\[(\w+)\]:(.*):(.*)/", $e->getMessage(), $matches);
-                if($match>0){
-                    $code = ($matches[1] == 'HT000' ? $matches[2] : $matches[1]);
-                    $message = $matches[3];
-                    $this->errorDb=array("message"=>$message,"code"=>$code);
-                }
-            }  
+            $this->fillError($e);
         }
     }
     public function addModule($module)
@@ -85,7 +78,21 @@ class vrAdmonRepository
             'INSERT INTO admon."vrModule" ("Name", "ModuleID", "CourseID") VALUES(?, ?, ?)');
         return $statement->execute([$module->getName(), $module->getModuleID(), $module->getCourseID()]);
     }
-    //getters
+    public function run($sql, $args = NULL)
+    {
+        try{
+            if (!$args)
+            {
+                return $this->pdo->query($sql);
+            }
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute($args);
+            return $stmt;
+        }catch(PDOException $e){
+            $this->fillError($e);
+        }
+    }
+    #region getters
     public function getLinksByModuleID($moduleID)
     {
         $statement=$this->pdo->prepare(
@@ -109,19 +116,17 @@ class vrAdmonRepository
         $course = $statement->fetchObject('vrCourse',[$courseID]);
         return $course;
     }
-    public function run($sql, $args = NULL)
+    #endregion
+    private function fillError($e)
     {
-        if (!$args)
-        {
-             return $this->pdo->query($sql);
-        }
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($args);
-        return $stmt;
-    }
-    public function getCourseData($courseID)
-    {
-        
+        if(strstr($e->getMessage(), 'SQLSTATE[')) {              
+            $match= preg_match("/SQLSTATE\[(\w+)\]:(.*):(.*)/", $e->getMessage(), $matches);
+             if($match>0){
+                 $code = ($matches[1] == 'HT000' ? $matches[2] : $matches[1]);
+                 $message = $matches[3];
+                 $this->errorDb=array("message"=>$message,"code"=>$code);
+             }
+         }
     }
 }
 
