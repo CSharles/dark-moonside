@@ -104,8 +104,8 @@ if(!isset($_SESSION["user"])):?>
                         <?php $controler->getModulesTable();?>
                     </div>
                     <aside class="controls inline">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newCourse">Nuevo modulo</button>
-                        <button type="button" class="btn btn-info" id="editar-modulo" data-toggle="modal" data-target="#newCourse">Editar modulo</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newModule">Nuevo modulo</button>
+                        <button type="button" class="btn btn-info" id="editar-modulo" data-toggle="modal" data-target="#newModule">Editar modulo</button>
                         <button type="button" class="btn btn-danger" id="eliminar-modulo">Eliminar modulo</button>
                         <form action="" method="post" class="occult" id="deleteForm">
                             <input type="text" name="deleteID" value=''/>
@@ -137,7 +137,7 @@ if(!isset($_SESSION["user"])):?>
                                             <label for="course-id">Código del Curso</label>
                                             <input name="courseId" id="course-id" value='' placeholder="Código del curso" type="text" class="form-control" />
                                         </div>                                        
-                                        <button type="submit" id="add-update" class="btn btn-primary">Agregar</button>
+                                        <button  name="sender" type="submit" id="add-update" class="btn btn-primary" value="module">Agregar</button>
                                     </form>
                                 </div>
                                 
