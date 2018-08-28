@@ -2,12 +2,13 @@
 function verifyLogin()
 {
     var json_upload =  "data=" + JSON.stringify({user: $("#username-email").val(),  password: $("#password").val()});
-    const url='../src/Entity/checkuser.php';
+    const url='../src/Controller/checkuser.php';
     let fetchData={
         method: 'POST',
         headers: {
             "Content-Type":"application/x-www-form-urlencoded"
         },
+        credentials: 'include',
         body:json_upload
     }
     fetch(url,fetchData) // Call the fetch function passing the url of the API as a parameter
@@ -28,7 +29,7 @@ function verifyLogin()
                     $("#password").val("");
                     setTimeout(()=>{
                         $("#failMessage").removeClass("notification-show");
-                    },1500)
+                    },1000)
                     break;
                     default:
                     console.log('error de red');

@@ -15,54 +15,67 @@ class vrAdmonController
             return $error["message"];
         }
     }
-    public function getCoursesTable(){
+    private function createTable(string $tableNamme, array $tableHeaders ){
         if(!$this->repo->hasError()){
-            $data = $this->repo->run('select * from admon."vrCourse"');  
-            if(!$this->repo->hasErrorDb()){
-                $tableView = require __DIR__."/../Template/vrCourseTableView.php";
-            }
-            else{
-                $data=array();
-                $tableView = require __DIR__."/../Template/vrCourseTableView.php";
-                $errorMessage = $this->identifyError($this->repo->getErrorDb());
-                $tableView.= require __DIR__."/../Template/vrMessagesView.php";
-            }
-            return $tableView;       
-        }
-        else{
-
-            $errorMessage = $this->identifyError($this->repo->getError());
-            $errorView = require __DIR__."/../Template/vrMessagesView.php";
-            return $errorView;
-        }
-    }
-    public function getModulesTable(){
-        if(!$this->repo->hasError()){
-            $data = $this->repo->run('select * from admon."vrModule"');
+            $data = $this->repo->getDataFromTable($tableNamme);
             if(!$this->repo->hasErrorDb()){       
-                //$tableColName= array_keys((array)$data->fetch());
-                $tableColName=[0=>"Nombre",1=>"Cod. Modulo",2=>"Cod. Curso"];
+                $tableColName=$tableHeaders;
                 $tableView = require __DIR__."/../Template/vrTableView.php";
             }
             else{
                 $data=array();
                 $tableColName=array();
-                $tableView = require __DIR__."/../Template/vrTableView.php";
+                $tableView = include __DIR__."/../Template/vrTableView.php";
                 $errorMessage = $this->identifyError($this->repo->getErrorDb());
                 $tableView.= require __DIR__."/../Template/vrMessagesView.php";
             }
-            return $tableView;       
+            return $tableView;         
         }
         else{
-
             $errorMessage = $this->identifyError($this->repo->getError());
             $errorView = require __DIR__."/../Template/vrMessagesView.php";
             return $errorView;
         }
+
+    }
+    private function createComponent(string $component, array $componentHeaders,array $componentControls,array $componentModal){
+        $ComponentName=$componentHeaders["Name"];
+        $ComponentSubHeader=$componentHeaders["SubHeader"];
+        $ComponentDescription=$componentHeaders["Description"];
+        $buferedTable="";
+        ob_start();
+        $t=$this->getCoursesTable();
+        $buferedTable = ob_get_clean();
+        $componentView=include __DIR__."/../Template/adm1ndashb0ardComponent.php";       
+    }
+    public function getCoursesTable(){
+        $Headers=["Nombre","Cod. Curso"];
+        $table="vrCourse";
+        return $this->createTable($table,$Headers);
+    }
+    public function getModulesTable(){
+        $Headers=["Nombre","Cod. Modulo","Cod. Curso"];
+        $table="vrModule";
+        return $this->createTable($table,$Headers);
+    }
+    public function getLinksTable(){
+        $Headers=["Descripción","Url","Modulo"];
+        $table="vrLink";
+        return $this->createTable($table,$Headers);
+
     }
     public function actionHandler(){
-        if (isset($_POST["deleteID"])){
-            $borrar = $_POST["deleteID"];
+        if (isset($_POST["deleteCourse"])){
+            $id = $_POST["deleteCourse"];
+            $this->repo->deleteCourseWithId($id);
+        }
+        if (isset($_POST["deleteModule"])){
+            $id = $_POST["deleteModule"];
+            $this->repo->deleteModuleithId($id);
+        }
+        if (isset($_POST["deleteLink"])){
+            $url = $_POST["deleteLink"];
+            $this->repo->deleteLinkWithUrl($url);
         }
         if(isset($_POST["sender"])){
             $sender = $_POST["sender"];
@@ -70,7 +83,8 @@ class vrAdmonController
                 case "course":
                 if(isset($_POST["name"],$_POST["courseId"])){
                     $course = new vrCourse($_POST["courseId"]);
-                    $course->setName($$_POST["name"]);
+                    $course->setName($_POST["name"]);
+                    $course->setActive($_POST["isActive"]);
                     $this->repo->addCourse($course);
                 }
                     break;
@@ -80,6 +94,7 @@ class vrAdmonController
                     $module->setModuleID($_POST["moduleId"]);
                     $module->setName($_POST["name"]);
                     $module->setCourseID($_POST["courseId"]);
+                    $module->setActive($_POST["isActive"]);
                     $this->repo->addModule($module);
                 }        
                     break;
@@ -87,8 +102,9 @@ class vrAdmonController
                 if(isset($_POST["description"],$_POST["url"],$_POST["moduleId"])){
                     $link = new vrLink();
                     $link->setDescription($_POST["description"]);
-                    $link->setURL($_POST["url"]);
+                    $link->setURL($_POST["linkUrl"]);
                     $link->setModuleID($_POST["moduleId"]);
+                    $link->setActive($_POST["isActive"]);
                     $this->repo->addLink($link);
                 }
                 default:
@@ -96,10 +112,20 @@ class vrAdmonController
             }
         }
     }
+    public function getCourseComponent(){
+        $Headers=["Name"=>"Cursos","SubHeader"=>"Administrar los cursos","Description"=>"Vista general de los cursos"];
+        $Controls=["Target"=>"#newCourse","EditId"=>"editarCurso","DeleteId"=>"eliminarCurso","FormId"=>"deleteForm"];
+        $ModalConent=["ModalId"=>"newCourse","ModalTitle"=>"Nuevo curso","ModalInputCount"=>2,
+        "Inputs"=>[
+            ["LabelText"=>">Nombre del curso","Name"=>"course-name","Id"=>"course-name","PlaceHolder"=>"Nombre del curso"],
+            ["LabelText"=>"Id del curso","Name"=>"course-id","Id"=>"course-id","PlaceHolder"=>"Id del curso"]
+        ],
+        "ModalButton"=>"course"];
+        $component="Courses";
+        return $this->createComponent($component,$Headers,$Controls,$ModalConent);
+    }
 }
 $controler= new vrAdmonController();
 $controler->actionHandler();
-
-
 ?>
 

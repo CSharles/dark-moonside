@@ -5,10 +5,9 @@
    require __DIR__ ."/../Entity/vrModule.php";
 class vrAdmonRepository
 {
-   protected $pdo;
-   protected $error;
-   protected $errorDb;
-
+    protected $pdo;
+    protected $error;
+    protected $errorDb;
     public function __construct($user=NULL,$pass=NULL) 
     {
         //$dbopts = parse_url(getenv('DATABASE_URL'));
@@ -57,16 +56,16 @@ class vrAdmonRepository
     public function addLink($link)
     {
         $statement=$this->pdo->prepare(
-            'INSERT INTO admon."vrLink" ("Description", "URL", "ModuleID") VALUES(?, ?, ?)');
+            'INSERT INTO admon."vrLink" ("Description", "URL", "ModuleID",Active) VALUES(?, ?, ?)');
         return $statement->execute([$link->getDescription(), $link->getURL(), $link->getModuleID()]);
     }
-    public function addCourse($course)
+    public function addCourse(vrCourse $course)
     {
         try{
             $statement=$this->pdo->prepare(
-                'INSERT INTO admon."vrCourse" ("Name", "CourseID") VALUES(:name, :id)
+                'INSERT INTO admon."vrCourse" ("Name", "CourseID","Active") VALUES(:name, :id, :active)
                 ON CONFLICT ("CourseID") DO UPDATE SET "Name" = :name');
-            return $statement->execute([$course->getName(), $course->getCourseID()]);
+            return $statement->execute([$course->getName(), $course->getCourseID()],$course->isActive());
         }
         catch(PDOexception $e){
             $this->fillError($e);
@@ -78,7 +77,18 @@ class vrAdmonRepository
             'INSERT INTO admon."vrModule" ("Name", "ModuleID", "CourseID") VALUES(?, ?, ?)');
         return $statement->execute([$module->getName(), $module->getModuleID(), $module->getCourseID()]);
     }
-    public function run($sql, $args = NULL)
+    public function deleteCourseWithId($id){
+        try{
+            $statement=$this->pdo->prepare(
+                'UPDATE admon."vrCourse" SET deleted= true
+                WHERE "CourseID"=:id');
+           return $statement->execute([$id]);
+        }
+        catch(PDOexception $e){
+            $this->fillError($e);
+        }
+    }
+    private function run($sql, $args = NULL)
     {
         try{
             if (!$args)
@@ -127,6 +137,24 @@ class vrAdmonRepository
                  $this->errorDb=array("message"=>$message,"code"=>$code);
              }
          }
+    }
+    private function removeActiveFlag($row){
+        $cleanArray=[];
+        foreach(array_keys($row) as $key){
+         if($key != 'Active'){
+             $cleanArray[$key]=$row[$key];
+         }
+        }
+        return $cleanArray;
+    }
+    Public function getDataFromTable(string $tableName){
+        $data = $this->run('select * from admon."'.$tableName.'"
+                     WHERE "Active" =true');
+        $raw=$data->fetchALL();
+        foreach(array_keys($raw) as $row){
+            $dataclean[$row]= $this->removeActiveFlag($raw[$row]);
+        }
+        return $dataclean;
     }
 }
 

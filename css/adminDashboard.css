@@ -1,17 +1,10 @@
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300);
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Raleway');
 body {
     background: -webkit-radial-gradient(#414141 10%, #111);
     background: -moz-radial-gradient(#414141 10%, #111);
     background: radial-gradient(#414141 10%, #111);
     font-family: 'Open Sans', sans-serif!important; 
     height: 100vh;
-}
-aside p{
-    text-align: center;
-}
-section{
-    width: 80%;
-    margin: 20px 0 0 40px;
 }
 section article{
     margin: 0 0 100px 0;
@@ -25,26 +18,14 @@ header h2{
 header p{
     margin: 0 auto;
 }
-.inline{
-    display: inline-block;
-}
-.occult{
-    display: none;
-}
 .selected{
     background: #558!important;
 }
 #side-panel{
-    width: 15%;
-    max-width: 20%;
-    min-width: 180px;
-    padding: 40px 0 0;
-    vertical-align: top;
-    height: 100vh;
+    height: 100%;
 }
 .table-wrapper{
     max-width: 800px;
-    min-width: 400px;
 }
 .controls{
     padding: 0 0 0 20px;
@@ -52,4 +33,36 @@ header p{
 .controls>.btn {
     margin-top: 10px;
     display: block;
+}
+.bk-color-1{
+    background:#A8A8C3;
+}
+#page-header{
+    background: #558;
+    border-top: #aaa 1px solid;
+    border-bottom: #aaa 1px solid;
+    margin-bottom: 2em;
+}
+#user-resume{
+    border-top: #558 5px solid;
+}
+#user-info, #user-activity{
+    margin-bottom: 0px;
+}
+#user-info{
+    border-top: #558 15px solid;
+    width: 100%;
+}
+#user-resume .badge{
+    white-space: normal;
+}
+.main-text{
+    font-family: 'Raleway',sans-serif;
+    font-size: 100%;
+}
+h4.main-text{
+    font-size: 1.25rem;
+}
+#user-activity h4{
+    margin-bottom: 0.75rem;
 }
