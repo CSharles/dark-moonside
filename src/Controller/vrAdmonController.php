@@ -81,10 +81,10 @@ class vrAdmonController
             $sender = $_POST["sender"];
             switch ($sender) {
                 case "course":
-                if(isset($_POST["name"],$_POST["courseId"])){
+                if(isset($_POST["courseName"],$_POST["courseId"])){
                     $course = new vrCourse($_POST["courseId"]);
-                    $course->setName($_POST["name"]);
-                    $course->setActive($_POST["isActive"]);
+                    $course->setName($_POST["courseName"]);
+                    $course->setActive(true);
                     $this->repo->addCourse($course);
                 }
                     break;
@@ -114,11 +114,11 @@ class vrAdmonController
     }
     public function getCourseComponent(){
         $Headers=["Name"=>"Cursos","SubHeader"=>"Administrar los cursos","Description"=>"Vista general de los cursos"];
-        $Controls=["Target"=>"#newCourse","EditId"=>"editarCurso","DeleteId"=>"eliminarCurso","FormId"=>"deleteForm"];
+        $Controls=["Target"=>"#newCourse","DeleteElement"=>"deleteCourse","EditId"=>"editarCurso","DeleteId"=>"eliminarCurso","FormId"=>"deleteForm"];
         $ModalConent=["ModalId"=>"newCourse","ModalTitle"=>"Nuevo curso","ModalInputCount"=>2,
         "Inputs"=>[
-            ["LabelText"=>">Nombre del curso","Name"=>"course-name","Id"=>"course-name","PlaceHolder"=>"Nombre del curso"],
-            ["LabelText"=>"Id del curso","Name"=>"course-id","Id"=>"course-id","PlaceHolder"=>"Id del curso"]
+            ["LabelText"=>"Nombre del curso","Name"=>"courseName","Id"=>"course-name","PlaceHolder"=>"Nombre del curso"],
+            ["LabelText"=>"Id del curso","Name"=>"courseId","Id"=>"course-id","PlaceHolder"=>"Id del curso"]
         ],
         "ModalButton"=>"course"];
         $component="Courses";

@@ -5,6 +5,8 @@ class vrCourse
     //protected $imagePath;
     protected $Modules;
     protected $CourseID;
+    protected $Active;
+
     public function __construct($id=null)
     {
        $this->CourseID=$id;
@@ -20,6 +22,10 @@ class vrCourse
     public function getName()
     {
         return $this->Name;
+    }
+    public function isActive()
+    {
+        return $this->Active;
     }
     public function toArray()
     {
@@ -38,6 +44,10 @@ class vrCourse
     public function setName($value)
     {
         $this->Name=$value;
+    }
+    public function setActive($value)
+    {
+        $this->Active=$value;
     }
     // public function setCourseID($value)
     // {
