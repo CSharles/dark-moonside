@@ -39,12 +39,19 @@ class vrAdmonController
 
     }
     private function createComponent(string $component, array $componentHeaders,array $componentControls,array $componentModal){
-        $ComponentName=$componentHeaders["Name"];
-        $ComponentSubHeader=$componentHeaders["SubHeader"];
-        $ComponentDescription=$componentHeaders["Description"];
         $buferedTable="";
         ob_start();
-        $t=$this->getCoursesTable();
+        switch ($component) {
+            case 'course':
+            $t=$this->getCoursesTable();
+                break;
+            case 'module':
+            $t=$this->getModulesTable();
+                break;
+            case 'link':
+            $t=$this->getLinksTable();
+                break;
+        }
         $buferedTable = ob_get_clean();
         $componentView=include __DIR__."/../Template/adm1ndashb0ardComponent.php";       
     }
@@ -80,15 +87,18 @@ class vrAdmonController
         if(isset($_POST["sender"])){
             $sender = $_POST["sender"];
             switch ($sender) {
-                case "course":
+                case "courses":
                 if(isset($_POST["courseName"],$_POST["courseId"])){
                     $course = new vrCourse($_POST["courseId"]);
                     $course->setName($_POST["courseName"]);
-                    $course->setActive(true);
+                    if(isset($_POST["isActive"]))
+                        $course->setActive(true);
+                    else
+                        $course->setActive(false);
                     $this->repo->addCourse($course);
                 }
                     break;
-                case "module":
+                case "modules":
                 if(isset($_POST["name"],$_POST["moduleId"],$_POST["courseId"])){
                     $module = new vrModule();
                     $module->setModuleID($_POST["moduleId"]);
@@ -98,7 +108,7 @@ class vrAdmonController
                     $this->repo->addModule($module);
                 }        
                     break;
-                case "link":
+                case "links":
                 if(isset($_POST["description"],$_POST["url"],$_POST["moduleId"])){
                     $link = new vrLink();
                     $link->setDescription($_POST["description"]);
@@ -113,15 +123,31 @@ class vrAdmonController
         }
     }
     public function getCourseComponent(){
-        $Headers=["Name"=>"Cursos","SubHeader"=>"Administrar los cursos","Description"=>"Vista general de los cursos"];
-        $Controls=["Target"=>"#newCourse","DeleteElement"=>"deleteCourse","EditId"=>"editarCurso","DeleteId"=>"eliminarCurso","FormId"=>"deleteForm"];
+        $Headers=["Name"=>"Cursos","SubHeader"=>"Administrar los cursos",
+        "Description"=>"Vista general de los cursos"];
+        $Controls=["Target"=>"#newCourse","DeleteElement"=>"deleteCourse",
+        "EditId"=>"editarCurso","DeleteId"=>"eliminarCurso","FormId"=>"deleteForm"];
         $ModalConent=["ModalId"=>"newCourse","ModalTitle"=>"Nuevo curso","ModalInputCount"=>2,
         "Inputs"=>[
             ["LabelText"=>"Nombre del curso","Name"=>"courseName","Id"=>"course-name","PlaceHolder"=>"Nombre del curso"],
             ["LabelText"=>"Id del curso","Name"=>"courseId","Id"=>"course-id","PlaceHolder"=>"Id del curso"]
         ],
         "ModalButton"=>"course"];
-        $component="Courses";
+        $component="courses";
+        return $this->createComponent($component,$Headers,$Controls,$ModalConent);
+    }
+    public function getModuleComponent(){
+        $Headers=["Name"=>"Modulos","SubHeader"=>"Administrar los modulos",
+        "Description"=>"Vista general de los modulos"];
+        $Controls=["Target"=>"#newModule","DeleteElement"=>"deleteId","EditId"=>"editar-modulo","DeleteId"=>"eliminar-modulo","FormId"=>"deleteModuleForm"];
+        $ModalConent=["ModalId"=>"newModule","ModalTitle"=>"Nuevo Modulo","ModalInputCount"=>3,
+        "Inputs"=>[
+            ["LabelText"=>"Nombre del modulo","Name"=>"name","Id"=>"module-name","PlaceHolder"=>"Nombre del curso"],
+            ["LabelText"=>"Código del modulo","Name"=>"moduleId","Id"=>"module-id","PlaceHolder"=>"Código del modulo"],
+            ["LabelText"=>"Curso al que pertenece","Name"=>"courseId","Id"=>"course-id","PlaceHolder"=>"Código del curso"]
+        ],
+        "ModalButton"=>"module"];
+        $component="modules";
         return $this->createComponent($component,$Headers,$Controls,$ModalConent);
     }
 }

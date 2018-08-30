@@ -8,64 +8,9 @@ if(isset($_SESSION["user"])):
                   require __DIR__ ."/../src/View/adm1nAside.php";  ?>
             <main class="col-md">
                 <section id="content" class="row">
-                <?php $controler->getCourseComponent(); ?>
+                <?php $controler->getModuleComponent(); ?>
                    
-                    <article id="modules" class="row">
-                        <header class"row">
-                            <h1>Modulos</h1>
-                            <h2>Administrar los modulos</h2>
-                            <p>Vista general de los modulos</p>
-                        </header>
-                        <div id="module-data" class="table-wrapper ">
-                            <?php $controler->getModulesTable();?>
-                        </div>
-                        <aside class="controls ">
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#newModule">Nuevo modulo</button>
-                            <button type="button" class="btn btn-info" id="editar-modulo" data-toggle="modal" data-target="#newModule">Editar modulo</button>
-                            <button type="button" class="btn btn-danger" id="eliminar-modulo">Eliminar modulo</button>
-                            <form action="" method="post" class="d-none" id="deleteModuleForm">
-                                <input type="text" name="deleteId" value=''/>
-                            </form>
-                        </aside>
-                        <!-- The Modal -->
-                        <div class="modal fade" id="newModule" tabindex="-1" role="dialog">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
 
-                                    <!-- Modal Header -->
-                                    <div class="modal-header">
-                                        <h4 data-id="modaltitle" class="modal-title">Nuevo Modulo</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    </div>
-                                    
-                                    <!-- Modal body -->
-                                    <div class="modal-body">
-                                        <form action="" method="post">
-                                            <div class="form-group">
-                                                <label for="module-name">Nombre del modulo</label>
-                                                <input name="name" id="module-name" value='' placeholder="Nombre del curso" type="text" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="module-id">Código del modulo</label>
-                                                <input name="moduleId" id="module-id" value='' placeholder="Código del modulo" type="text" class="form-control" />
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="course-id">Curso al que pertenece</label>
-                                                <input name="courseId" id="course-id" value='' placeholder="Código del curso" type="text" class="form-control" />
-                                            </div>                                        
-                                            <button  name="sender" type="submit" id="add-update" class="btn btn-primary" value="module">Agregar</button>
-                                        </form>
-                                    </div>
-                                    
-                                    <!-- Modal footer -->
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>                     
-                    </article>
                     <article id="guides" class="row">
                         <header class="row">
                                 <h1>Guias</h1>
