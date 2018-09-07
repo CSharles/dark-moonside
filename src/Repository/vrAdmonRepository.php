@@ -53,31 +53,37 @@ class vrAdmonRepository
         }        
     }
     //Return true if the link was succesuflly added, otherwise false.
-    public function addLink($link)
+    public function addLink(vrLink $link)
     {
         $statement=$this->pdo->prepare(
-            'INSERT INTO admon."vrLink" ("Description", "URL", "ModuleID",Active) VALUES(?, ?, ?)');
-        return $statement->execute([$link->getDescription(), $link->getURL(), $link->getModuleID()]);
+            'INSERT INTO admon."vrLink" ("Description", "URL", "ModuleID","Active") VALUES(:desc, :url, :moduleId, :active)');
+        return $statement->execute([$link->getDescription(), $link->getURL(), $link->getModuleID(), $link->isActive()?1:0]);
     }
     public function addCourse(vrCourse $course)
     {
         try{
             $statement=$this->pdo->prepare(
                 'INSERT INTO admon."vrCourse" ("Name", "CourseID","Active") VALUES(:name, :id, :active)
-                ON CONFLICT ("CourseID") DO UPDATE SET "Name" = :name');
-            return $statement->execute([$course->getName(), $course->getCourseID(),$course->isActive()]);
+                ON CONFLICT ("CourseID") DO UPDATE SET "Name" = :name, "Active"=:active');
+            return $statement->execute([$course->getName(), $course->getCourseID(),$course->isActive()?1:0]);
         }
         catch(PDOexception $e){
             $this->fillError($e);
         }
     }
-    public function addModule($module)
+    public function addModule(vrModule $module)
     {
-        $statement=$this->pdo->prepare(
-            'INSERT INTO admon."vrModule" ("Name", "ModuleID", "CourseID") VALUES(?, ?, ?)');
-        return $statement->execute([$module->getName(), $module->getModuleID(), $module->getCourseID()]);
+        try{
+            $statement=$this->pdo->prepare(
+                'INSERT INTO admon."vrModule" ("Name", "ModuleID", "CourseID","Active") VALUES(?, ?, ?, ?)');
+            return $statement->execute([$module->getName(), $module->getModuleID(), $module->getCourseID(), $module->isActive()?1:0]);
+        }
+        catch(PDOexception $e){
+            throw $e;
+            $this->fillError($e);
+        }
     }
-    public function deleteCourseWithId($id){
+    public function deleteCourseWithId(int $id){
         try{
             $statement=$this->pdo->prepare(
                 'UPDATE admon."vrCourse" SET deleted= true

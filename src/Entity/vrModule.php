@@ -19,7 +19,11 @@ class vrModule
     public function getModuleID()
     {
         return $this->ModuleID;
-    }  
+    }
+    public function isActive()
+    {
+        return $this->Active;
+    } 
     public function toArray()
     {
         $array= [
@@ -40,5 +44,9 @@ class vrModule
     public function setCourseID($value)
     {
         $this->CourseID=$value;
+    }
+    public function setActive(bool $value)
+    {
+        $this->Active=$value;
     }
 }

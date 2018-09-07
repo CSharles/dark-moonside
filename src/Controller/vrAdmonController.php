@@ -42,13 +42,13 @@ class vrAdmonController
         $buferedTable="";
         ob_start();
         switch ($component) {
-            case 'course':
+            case 'courses':
             $t=$this->getCoursesTable();
                 break;
-            case 'module':
+            case 'modules':
             $t=$this->getModulesTable();
                 break;
-            case 'link':
+            case 'links':
             $t=$this->getLinksTable();
                 break;
         }
@@ -72,6 +72,7 @@ class vrAdmonController
 
     }
     public function actionHandler(){
+    //Deletion--// 
         if (isset($_POST["deleteCourse"])){
             $id = $_POST["deleteCourse"];
             $this->repo->deleteCourseWithId($id);
@@ -84,43 +85,55 @@ class vrAdmonController
             $url = $_POST["deleteLink"];
             $this->repo->deleteLinkWithUrl($url);
         }
+    // 
+    //adition--//       
         if(isset($_POST["sender"])){
             $sender = $_POST["sender"];
             switch ($sender) {
-                case "courses":
-                if(isset($_POST["courseName"],$_POST["courseId"])){
-                    $course = new vrCourse($_POST["courseId"]);
-                    $course->setName($_POST["courseName"]);
-                    if(isset($_POST["isActive"]))
-                        $course->setActive(true);
-                    else
-                        $course->setActive(false);
-                    $this->repo->addCourse($course);
-                }
+                case "course":
+                    if(isset($_POST["courseName"],$_POST["courseId"])){
+                        $course = new vrCourse($_POST["courseId"]);
+                        $course->setName($_POST["courseName"]);
+                        if(isset($_POST["isActive"]))
+                            $course->setActive(true);
+                        else
+                            $course->setActive(false);
+                        $this->repo->addCourse($course);
+                    }
                     break;
-                case "modules":
-                if(isset($_POST["name"],$_POST["moduleId"],$_POST["courseId"])){
-                    $module = new vrModule();
-                    $module->setModuleID($_POST["moduleId"]);
-                    $module->setName($_POST["name"]);
-                    $module->setCourseID($_POST["courseId"]);
-                    $module->setActive($_POST["isActive"]);
-                    $this->repo->addModule($module);
-                }        
+                case "module":
+                    if(isset($_POST["name"],$_POST["moduleId"],$_POST["courseId"])){
+                        $module = new vrModule();
+                        $module->setModuleID($_POST["moduleId"]);
+                        $module->setName($_POST["name"]);
+                        $module->setCourseID($_POST["courseId"]);
+                        if(isset($_POST["isActive"])){
+                            $module->setActive(true);
+                        }
+                        else{
+                            $module->setActive(false);
+                        }
+                        $this->repo->addModule($module);
+                    }
+                    break;        
+                case "link":
+                    if(isset($_POST["description"],$_POST["url"],$_POST["moduleId"])){
+                        $link = new vrLink();
+                        $link->setDescription($_POST["description"]);
+                        $link->setURL($_POST["linkUrl"]);
+                        $link->setModuleID($_POST["moduleId"]);
+                        if(isset($_POST["isActive"]))
+                        $link->setActive(true);
+                        else
+                        $link->setActive(false);
+                        $this->repo->addLink($link);
+                    }
                     break;
-                case "links":
-                if(isset($_POST["description"],$_POST["url"],$_POST["moduleId"])){
-                    $link = new vrLink();
-                    $link->setDescription($_POST["description"]);
-                    $link->setURL($_POST["linkUrl"]);
-                    $link->setModuleID($_POST["moduleId"]);
-                    $link->setActive($_POST["isActive"]);
-                    $this->repo->addLink($link);
-                }
                 default:
                     break;
             }
         }
+    //    
     }
     public function getCourseComponent(){
         $Headers=["Name"=>"Cursos","SubHeader"=>"Administrar los cursos",
@@ -139,15 +152,29 @@ class vrAdmonController
     public function getModuleComponent(){
         $Headers=["Name"=>"Modulos","SubHeader"=>"Administrar los modulos",
         "Description"=>"Vista general de los modulos"];
-        $Controls=["Target"=>"#newModule","DeleteElement"=>"deleteId","EditId"=>"editar-modulo","DeleteId"=>"eliminar-modulo","FormId"=>"deleteModuleForm"];
+        $Controls=["Target"=>"#newModule","DeleteElement"=>"deleteModule","EditId"=>"editar-modulo","DeleteId"=>"eliminar-modulo","FormId"=>"deleteModuleForm"];
         $ModalConent=["ModalId"=>"newModule","ModalTitle"=>"Nuevo Modulo","ModalInputCount"=>3,
         "Inputs"=>[
-            ["LabelText"=>"Nombre del modulo","Name"=>"name","Id"=>"module-name","PlaceHolder"=>"Nombre del curso"],
+            ["LabelText"=>"Nombre del modulo","Name"=>"name","Id"=>"module-name","PlaceHolder"=>"Nombre del modulo"],
             ["LabelText"=>"Código del modulo","Name"=>"moduleId","Id"=>"module-id","PlaceHolder"=>"Código del modulo"],
             ["LabelText"=>"Curso al que pertenece","Name"=>"courseId","Id"=>"course-id","PlaceHolder"=>"Código del curso"]
         ],
         "ModalButton"=>"module"];
         $component="modules";
+        return $this->createComponent($component,$Headers,$Controls,$ModalConent);
+    }
+    public function getGuideComponent(){
+        $Headers=["Name"=>"Guias","SubHeader"=>"Administrar las guias",
+        "Description"=>"Vista general de las guias"];
+        $Controls=["Target"=>"#newLink","DeleteElement"=>"deleteLink","EditId"=>"editar-enlace","DeleteId"=>"eliminar-enlace","FormId"=>"deleteLinkForm"];
+        $ModalConent=["ModalId"=>"newLink","ModalTitle"=>"Nuevo enlace","ModalInputCount"=>3,
+        "Inputs"=>[
+            ["LabelText"=>"Descripcion del enlace","Name"=>"description","Id"=>"link-description","PlaceHolder"=>"Titulo del enlace"],
+            ["LabelText"=>"URL del enlace","Name"=>"moduleId","linkUrl"=>"link-url","PlaceHolder"=>"http://wwww.example.com"],
+            ["LabelText"=>"Modulo al que pertenece","Name"=>"ModuleId","Id"=>"module-id","PlaceHolder"=>"Id del módulo"]
+        ],
+        "ModalButton"=>"link"];
+        $component="links";
         return $this->createComponent($component,$Headers,$Controls,$ModalConent);
     }
 }
