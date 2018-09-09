@@ -170,7 +170,7 @@ class vrAdmonController
         $ModalConent=["ModalId"=>"newLink","ModalTitle"=>"Nuevo enlace","ModalInputCount"=>3,
         "Inputs"=>[
             ["LabelText"=>"Descripcion del enlace","Name"=>"description","Id"=>"link-description","PlaceHolder"=>"Titulo del enlace"],
-            ["LabelText"=>"URL del enlace","Name"=>"moduleId","linkUrl"=>"link-url","PlaceHolder"=>"http://wwww.example.com"],
+            ["LabelText"=>"URL del enlace","Name"=>"moduleId","Id"=>"link-url","PlaceHolder"=>"http://wwww.example.com"],
             ["LabelText"=>"Modulo al que pertenece","Name"=>"ModuleId","Id"=>"module-id","PlaceHolder"=>"Id del módulo"]
         ],
         "ModalButton"=>"link"];
