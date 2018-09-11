@@ -8,7 +8,10 @@ if(isset($_SESSION["user"])):
                   require __DIR__ ."/../src/View/adm1nAside.php";  ?>
             <main class="col-md">
                 <section id="content" class="row">
-                <?php $controler->getGuideComponent(); ?>
+                <?php //$controler->getGuideComponent();
+               // $controler->getCourseComponent();
+               //$controler->getModuleComponent();
+                //$controler->getExamComponent(); ?>
                    
 
 

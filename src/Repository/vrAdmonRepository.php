@@ -56,8 +56,8 @@ class vrAdmonRepository
     public function addLink(vrLink $link)
     {
         $statement=$this->pdo->prepare(
-            'INSERT INTO admon."vrLink" ("Description", "URL", "ModuleID","Active") VALUES(:desc, :url, :moduleId, :active)');
-        return $statement->execute([$link->getDescription(), $link->getURL(), $link->getModuleID(), $link->isActive()?1:0]);
+            'INSERT INTO admon."vrLink" ("Description", "URL", "ModuleID", "Active", "Exam") VALUES(:desc, :url, :moduleid, :active, :exam)');
+        return $statement->execute([$link->getDescription(), $link->getURL(), $link->getModuleID(), $link->isActive()?1:0,$link->isExam()?1:0]);
     }
     public function addCourse(vrCourse $course)
     {
@@ -154,13 +154,38 @@ class vrAdmonRepository
         return $cleanArray;
     }
     Public function getDataFromTable(string $tableName){
-        $data = $this->run('select * from admon."'.$tableName.'"
-                     WHERE "Active" =true');
-        $raw=$data->fetchALL();
-        foreach(array_keys($raw) as $row){
-            $dataclean[$row]= $this->removeActiveFlag($raw[$row]);
+        $columns="";
+        $conditions='"Active" =true';
+        switch ($tableName) {
+            case 'vrCourse':
+                $columns='"Name", "CourseID"';
+                break;
+            case 'vrModule':
+                $columns='"Name", "ModuleID", "CourseID"';
+                break;
+            case 'vrLink':
+                $columns='"Description", "URL", "ModuleID"';
+                $conditions='"Active"=true AND "Exam"=false';
+                break;
+            case 'vrExam':
+                $columns='"Description", "URL", "ModuleID"';
+                $conditions='"Exam"=true';
+                $tableName='vrLink';
+                break;
+            default:
+                $columns="1";
+                break;
         }
-        return $dataclean;
+        $data = $this->run('select '.$columns.' FROM admon."'.$tableName.'"
+                     WHERE'.$conditions);
+        //$raw=$data->fetchALL();
+        //foreach(array_keys($raw) as $row){
+        //    $dataclean[$row]= $this->removeActiveFlag($raw[$row]);
+        //}
+        return $data->fetchAll();
+    }
+    Public function getExams(){
+
     }
 }
 

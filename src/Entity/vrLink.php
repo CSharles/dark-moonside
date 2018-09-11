@@ -4,6 +4,8 @@ class vrLink
     protected $Description;
     protected $URL;
     protected $ModuleID;
+    protected $isActive;
+    protected $isExam;
 
     public function __construct()
     {
@@ -20,6 +22,14 @@ class vrLink
     {
         return $this->ModuleID;
     }
+    public function isActive()
+    {
+        return $this->isActive;
+    }
+    public function isExam()
+    {
+        return $this->isExam;
+    }        
    
     public function toArray()
     {
@@ -41,5 +51,13 @@ class vrLink
     public function setModuleID($value)
     {
         $this->ModuleID=$value;
+    }
+    public function setActive($value)
+    {
+        $this->isActive=$value;
+    }
+    public function setExam($value)
+    {
+        $this->isExam=$value;
     }
 }
