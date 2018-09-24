@@ -152,9 +152,6 @@ class vrAdmonController
                         $link->setExam(true);
                         $this->repo->addLink($link);
                     }
-                    else{
-                        echo"NO";
-                    }
                     break;                    
                 default:
                     break;
@@ -162,11 +159,12 @@ class vrAdmonController
         }
     //    
     }
+#Region Component Creation
     public function getCourseComponent(){
         $Headers=["Name"=>"Cursos","SubHeader"=>"Administrar los cursos",
         "Description"=>"Vista general de los cursos"];
         $Controls=["Target"=>"#newCourse","DeleteElement"=>"deleteCourse",
-        "EditId"=>"editarCurso","DeleteId"=>"eliminarCurso","FormId"=>"deleteForm"];
+        "EditId"=>"editar-curso","DeleteId"=>"eliminarCurso","FormId"=>"deleteForm"];
         $ModalConent=["ModalId"=>"newCourse","ModalTitle"=>"Nuevo curso","ModalInputCount"=>2,
             "Inputs"=>[
                 ["LabelText"=>"Nombre del curso","Name"=>"courseName","Id"=>"course-name","PlaceHolder"=>"Nombre del curso"],
@@ -220,6 +218,7 @@ class vrAdmonController
         $component="exams";
         return $this->createComponent($component,$Headers,$Controls,$ModalConent);
     }
+#endRegion
 }
 $controler= new vrAdmonController();
 $controler->actionHandler();

@@ -178,10 +178,6 @@ class vrAdmonRepository
         }
         $data = $this->run('select '.$columns.' FROM admon."'.$tableName.'"
                      WHERE'.$conditions);
-        //$raw=$data->fetchALL();
-        //foreach(array_keys($raw) as $row){
-        //    $dataclean[$row]= $this->removeActiveFlag($raw[$row]);
-        //}
         return $data->fetchAll();
     }
     Public function getExams(){

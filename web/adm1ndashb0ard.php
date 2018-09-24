@@ -1,20 +1,17 @@
 <?php
 session_start();
-require __DIR__ ."/../src/Controller/vrAdmonController.php";
 if(isset($_SESSION["user"])):
+    require __DIR__ ."/../src/Controller/vrAdmonController.php";
     require __DIR__ ."/../src/View/adm1nHeader.php";?>
         <body>
             <?php require __DIR__ ."/../src/View/adm1nNav.php"; 
                   require __DIR__ ."/../src/View/adm1nAside.php";  ?>
             <main class="col-md">
                 <section id="content" class="row">
-                <?php //$controler->getGuideComponent();
-               // $controler->getCourseComponent();
-               //$controler->getModuleComponent();
-                //$controler->getExamComponent(); ?>
-                   
-
-
+                    <?php //$controler->getGuideComponent();
+                     // $controler->getCourseComponent();
+                     //$controler->getModuleComponent();
+                     //$controler->getExamComponent(); ?>
                 </section>
                 <section id="users" class="d-none">
                     <article>
