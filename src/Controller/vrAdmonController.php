@@ -1,12 +1,11 @@
 <?php
 require __DIR__."/../Repository/vrAdmonRepository.php";
 
-class vrAdmonController
+class vrAdmonController extends baseController
 {
-    protected  $repo;
     private $errors;
     public function __construct(){
-        $this->repo= new vrAdmonRepository("vrAdmin","vradmin23");
+        $this->repo= new vrAdmonRepository();
     }
     private function identifyError($error){
         if($error["code"]=="23505"){

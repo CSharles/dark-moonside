@@ -16,4 +16,3 @@ if(isset($_SESSION["user"])){
 else{
     header("Location:adm1nL0g1n.html");
 }
-?>
