@@ -4,6 +4,10 @@ class vrModule
     protected $Name;
     protected $ModuleID;
     protected $CourseID;
+    protected $thumbnail;
+    protected $active;
+    protected $guides;
+    protected $exams;
 
     public function __construct()
     {
@@ -20,19 +24,22 @@ class vrModule
     {
         return $this->ModuleID;
     }
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
     public function isActive()
     {
         return $this->Active;
     } 
-    public function toArray()
+    public function getGuides()
     {
-        $array= [
-            'Name'=> $this->getName(),
-            'ModuleID'=> $this->getModuleID(),
-            'CourseID'=>$this->getCourseID(),
-        ];
-        return $array;
+        return $this->guides;
     }
+    public function getExams()
+    {
+        return $this->exams;
+    }    
     public function setName($value)
     {
         $this->Name=$value;
@@ -48,5 +55,21 @@ class vrModule
     public function setActive(bool $value)
     {
         $this->Active=$value;
+    }
+    public function setThumbnail(string $value)
+    {
+        $this->thumbnail=$value;
+    }
+    public function setGuides($value)
+    {
+        $this->guides=$value;
+    }
+    public function setExams($value)
+    {
+        $this->exams=$value;
+    }
+    public function __destruct(){
+        unset($this->guides);
+        unset($this->exams);
     }
 }

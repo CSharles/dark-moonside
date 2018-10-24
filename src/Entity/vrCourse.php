@@ -1,11 +1,11 @@
 <?php
 class vrCourse
 {
-    protected $Name;
-    //protected $imagePath;
-    protected $Modules;
     protected $CourseID;
+    protected $Name;
     protected $Active;
+    protected $thumbnail;
+    protected $modules;
 
     public function __construct($id=null)
     {
@@ -15,10 +15,6 @@ class vrCourse
     {
         return $this->CourseID;
     }
-    public function getModules()
-    {
-        return $Modules;
-    }
     public function getName()
     {
         return $this->Name;
@@ -26,6 +22,14 @@ class vrCourse
     public function isActive()
     {
         return $this->Active;
+    }
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+    public function getModules()
+    {
+        return $this->modules;
     }
     public function toArray()
     {
@@ -40,7 +44,6 @@ class vrCourse
         }
         return $array;
     }
-
     public function setName($value)
     {
         $this->Name=$value;
@@ -49,23 +52,11 @@ class vrCourse
     {
         $this->Active=$value;
     }
-    // public function setCourseID($value)
-    // {
-    //     $this->courseID=$value;
-    // }
-    // public function getImagePath()
-    // {
-    //    if ($this->imagePath==null) {
-    //        return '/images/placeholder.jpg';
-    //    }
-    //     return $this->imagePath;
-    // }
-    // public function setImagePath($value)
-    // {
-    //     $this->imagePath=$value;
-    // }
     public function setModules($value)
     {
-        $this->Modules=$value;
+        $this->modules=$value;
+    }
+    public function __destruct(){
+        unset($this->modules);
     }
 }
