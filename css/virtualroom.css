@@ -43,14 +43,14 @@ header.row{
 section.board,section#resources{
     background-color: #fff;
 }
-section#exams,section#misc,section#corel{
+section#exams,section#exams header,section#misc,section#corel{
     background-color: #77aa00;
 }
 section#ilustrador{
     background-color: #241107;
     color: #FF7719;
 }
-section#exams hr.star-light:first-of-type:after,
+section#exams  hr.star-light:first-of-type:after,
 section#misc hr.star-light:first-of-type:after {
     color: #fff;
     background-color: #7a0;
