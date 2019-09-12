@@ -2,7 +2,7 @@
 function verifyLogin()
 {
     var json_upload =  "data=" + JSON.stringify({user: $("#username-email").val(),  password: $("#password").val()});
-    const url='../src/Controller/checkuser.php';
+    const url='../src/Controller/Admon/vrLoginController.php';
     let fetchData={
         method: 'POST',
         headers: {
@@ -21,7 +21,13 @@ function verifyLogin()
                 switch(data){
                     case "1":
                     $("#successInMsg").addClass("notification-show");
-                    redirect();
+                    redirect(1);
+                    break;
+                    case "2":
+                    redirect(2);
+                    break;
+                    case "3":
+                    redirect(3);
                     break;
                     case "7":
                     $("#failMessage").addClass("notification-show");
@@ -33,6 +39,7 @@ function verifyLogin()
                     break;
                     default:
                     console.log('error de red');
+                    console.log(data);
                     $("#username-email").val("");
                     $("#password").val("");
                 }
@@ -44,12 +51,19 @@ function verifyLogin()
     });
 };
 
-function redirect()
+function redirect(pageId)
 {
-    setTimeout(() => {
-        location.href = "adm1ndashb0ard.php"}, 2000)
+    switch (pageId) {
+        case 1:
+            setTimeout(() => {
+                location.href = "adm1ndashb0ard.php"}, 1500)
+            break;
+        case 2:
+            location.href = "profile.php";
+            break;
+        case 3:
+            location.href= "profile.php";
+        default:
+            break;
+    }
 }
-
-
-
-

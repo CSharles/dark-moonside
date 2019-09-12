@@ -1,17 +1,21 @@
 <?php
+namespace VirtualRoom\Web;
 session_start();
+use VirtualRoom\Controller\Admon\vrAdmonController;
 if(isset($_SESSION["user"])):
-    require __DIR__ ."/../src/Controller/vrAdmonController.php";
+    $controler= new vrAdmonController();
+    $controler->actionHandler();
     require __DIR__ ."/../src/View/adm1nHeader.php";?>
         <body>
             <?php require __DIR__ ."/../src/View/adm1nNav.php"; 
                   require __DIR__ ."/../src/View/adm1nAside.php";  ?>
             <main class="col-md">
                 <section id="content" class="row">
-                    <?php //$controler->getGuideComponent();
-                     // $controler->getCourseComponent();
-                     //$controler->getModuleComponent();
-                     //$controler->getExamComponent(); ?>
+                    <?php 
+                    $controler->getGuideComponent();
+                    $controler->getCourseComponent();
+                    $controler->getModuleComponent();
+                    $controler->getExamComponent(); ?>
                 </section>
                 <section id="users" class="d-none">
                     <article>
@@ -60,4 +64,6 @@ if(isset($_SESSION["user"])):
  require __DIR__ ."/../src/View/adm1nFooter.php";  
  else: ?>
     <h1>Sesion no iniciada.</h1>
-<?php endif?>
+<?php endif;
+header("Location:adm1nL0g1n.html");
+?>

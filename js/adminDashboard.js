@@ -48,3 +48,29 @@ $(document).ready(function() {
         return td;
     }
 });
+var input = document.querySelector('input');
+var preview = document.querySelector('.preview');
+var imagePlace= document.querySelector('.figure-img');
+input.addEventListener('change', updateImageDisplay);
+function updateImageDisplay() {
+  var curFile = input.files;
+  if(curFile.length === 0) {
+    var message = document.createElement('p');
+    message.textContent = 'No files currently selected for upload';
+    preview.appendChild(message);
+  } else {
+      var message = document.createElement('p');
+      if(validFileType(curFile[0])) {
+        imagePlace.src = window.URL.createObjectURL(curFile[0]);
+      } else {
+        message.textContent = 'File name ' + curFile[0].name + ': Not a valid file type. Update your selection.';
+            preview.appendChild(message);
+      }
+  }
+}
+function validFileType(file) {
+    if(file.type.match(/^image\//)) {
+      return true;
+    }
+  return false;
+}

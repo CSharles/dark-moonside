@@ -1,17 +1,16 @@
 <?php
+namespace VirtualRoom\Entity;
 class vrModule
 {
     protected $Name;
     protected $ModuleID;
     protected $CourseID;
+    protected $AddedBy;
     protected $thumbnail;
-    protected $active;
+    protected $Active;
     protected $guides;
     protected $exams;
 
-    public function __construct()
-    {
-    }
     public function getName()
     {
         return $this->Name;
@@ -71,5 +70,22 @@ class vrModule
     public function __destruct(){
         unset($this->guides);
         unset($this->exams);
+    }
+
+    /**
+     * Get the id of the user or admin who added the coursd
+     */ 
+    public function getAddedBy()
+    {
+        return $this->AddedBy;
+    }
+
+    /**
+     * Set the id of the user or admin who added the module
+     *
+     */ 
+    public function setAddedBy($value)
+    {
+        $this->AddedBy = $value;
     }
 }

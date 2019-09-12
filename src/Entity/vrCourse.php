@@ -1,9 +1,12 @@
 <?php
+namespace VirtualRoom\Entity;
+
 class vrCourse
 {
     protected $CourseID;
     protected $Name;
     protected $Active;
+    protected $AddedBy;
     protected $thumbnail;
     protected $modules;
 
@@ -58,5 +61,22 @@ class vrCourse
     }
     public function __destruct(){
         unset($this->modules);
+    }
+
+    /**
+     * Get the id of the user or admin who added the course
+     */ 
+    public function getAddedBy()
+    {
+        return $this->AddedBy;
+    }
+
+    /**
+     * Set the id of the user or admin who added the course
+     *
+     */ 
+    public function setAddedBy($value)
+    {
+        $this->AddedBy = $value;
     }
 }

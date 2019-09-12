@@ -1,4 +1,5 @@
 <?php
+namespace VirtualRoom\Entity;
 class vrLink
 {
     protected $Description;
@@ -6,6 +7,7 @@ class vrLink
     protected $ModuleID;
     protected $Active;
     protected $Exam;
+    protected $AddedBy;
 
     public function __construct()
     {
@@ -50,5 +52,22 @@ class vrLink
     public function setExam($value)
     {
         $this->Exam=$value;
+    }
+
+    /**
+     * Get the id of the user admin who add the link
+     */ 
+    public function getAddedBy()
+    {
+        return $this->AddedBy;
+    }
+
+    /**
+     * Set the id of the user admin who add the link
+     *
+     */ 
+    public function setAddedBy($value)
+    {
+        $this->AddedBy = $value;
     }
 }

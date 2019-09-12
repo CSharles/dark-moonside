@@ -1,20 +1,33 @@
 <?php
-   require __DIR__ ."/../Entity/vrCourse.php";
-   require __DIR__ ."/../Entity/vrLink.php";
-   require __DIR__ ."/../Entity/vrModule.php";
+namespace VirtualRoom\Repository;
+
+use VirtualRoom\Repository\baseRepository;
+use VirtualRoom\Entity\vrCourse;
+use VirtualRoom\Entity\vrLink;
+use VirtualRoom\Entity\vrModule;
+use \PDO;
+use \PDOException;
+
 class vrAdmonRepository extends baseRepository
 {
-    public function __construct() 
+    public function __construct($db) 
     {
-        parent::__construct();
+        parent::__construct($db);
     }
 
     //Return true if the link was succesuflly added, otherwise false.
     public function addLink(vrLink $link)
     {
-        $statement=$this->pdo->prepare(
-            'INSERT INTO admon."vrLink" ("Description", "URL", "ModuleID", "Active", "Exam") VALUES(:desc, :url, :moduleid, :active, :exam)');
-        return $statement->execute([$link->getDescription(), $link->getURL(), $link->getModuleID(), $link->isActive()?1:0,$link->isExam()?1:0]);
+        try{
+            $statement=$this->pdo->prepare(
+                'INSERT INTO admon."vrLink" ("Description", "URL", "ModuleID", "Active", "Exam") VALUES(:desc, :url, :moduleid, :active, :exam)');
+            return $statement->execute([$link->getDescription(), $link->getURL(), $link->getModuleID(), $link->isActive()?1:0,$link->isExam()?1:0]);
+        }
+        catch(PDOException $e)
+        {
+            $this->fillError($e);
+            return false;
+        }
     }
     public function addCourse(vrCourse $course)
     {
@@ -26,6 +39,7 @@ class vrAdmonRepository extends baseRepository
         }
         catch(PDOexception $e){
             $this->fillError($e);
+            return false;
         }
     }
     public function addModule(vrModule $module)
@@ -36,8 +50,8 @@ class vrAdmonRepository extends baseRepository
             return $statement->execute([$module->getName(), $module->getModuleID(), $module->getCourseID(), $module->isActive()?1:0]);
         }
         catch(PDOexception $e){
-            throw $e;
             $this->fillError($e);
+            return false;
         }
     }
     public function deleteCourseWithId(int $id){
@@ -49,6 +63,7 @@ class vrAdmonRepository extends baseRepository
         }
         catch(PDOexception $e){
             $this->fillError($e);
+            return false;
         }
     }
     #region getters
@@ -57,23 +72,25 @@ class vrAdmonRepository extends baseRepository
         $statement=$this->pdo->prepare(
             'Select * from admon."vrLink" Where "ModuleID"=?');
         $statement->execute([$moduleID]);
-        return $statement->fetchAll(PDO::FETCH_CLASS,'vrLink');
+        $arrayOfLinks= $statement->fetchAll(PDO::FETCH_CLASS,vrLink::class);
+        if(empty($arrayOfLinks))
+            $arrayOfLinks=false;
+        return $arrayOfLinks;
     }
     public function getModuleByID($moduleID)
     {
         $statement=$this->pdo->prepare('Select * from admon."vrModule" Where "ModuleID"=?');
-        $statement->setFetchMode(PDO::FETCH_CLASS,'vrModule');
+        $statement->setFetchMode(PDO::FETCH_CLASS,vrModule::class);
         $statement->execute([$moduleID]);
-        return $statement->fetchObject('vrModule');
+        return $statement->fetchObject(vrModule::class);
     }
     public function getCourseByID($courseID)
     {
         $statement=$this->pdo->prepare(
             'Select * from admon."vrCourse" WHERE "CourseID" LIKE ?');
-        $statement->setFetchMode(PDO::FETCH_CLASS|PDO::FETCH_PROPS_LATE, 'vrCourse');
+        $statement->setFetchMode(PDO::FETCH_CLASS, vrCourse::class);
         $statement->execute([$courseID]);
-        $course = $statement->fetchObject('vrCourse',[$courseID]);
-        return $course;
+        return $statement->fetchObject(vrCourse::class,[$courseID]);
     }
     #endregion
 

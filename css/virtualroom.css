@@ -4,9 +4,12 @@ section#login{display: none;}
     text-transform:uppercase;
     margin: 15px 1% 10px;
 }
-header.row{
+#controls,#exams, section#modules article:first-of-type{height:90vh;}
+header.row, section#resources header{
     background-color: #fff;
     color: #000;
+}
+header.row{
     text-align: left;
 }
 .tile a{
@@ -40,10 +43,10 @@ header.row{
   background-color:#77aa00;
 }
 
-section.board,section#resources{
+section.board,section#resources,section#resources header{
     background-color: #fff;
 }
-section#exams,section#exams header,section#misc,section#corel{
+section#exams,section#exams header,section#misc,section#misc header,section#corel{
     background-color: #77aa00;
 }
 section#ilustrador{
@@ -58,8 +61,11 @@ section#misc hr.star-light:first-of-type:after {
 section#resources hr.star-light:first-of-type{
     border-color:#18bc9c;
 }
+section.success p a{
+    color: #fff;
+}
 p a:hover,span a:hover{
-    color:#18bc9c;
+    color:#148f76;
     text-decoration:none;
 }
 section#ilustrador a:hover{
@@ -95,8 +101,14 @@ hr.pencil:after{
     color:#fff;
     background-color:#7a0;
 }
+#modules hr.pencil:after{
+    background: #18bc9c;
+}
 hr.brush:after{
     content:"\f1fc";
     color:#fff;
     background-color:#241107;
+}
+.name{
+    font-family: Lato,'Segoe UI', sans-serif;
 }
