@@ -52,6 +52,22 @@
                             <p><a href="https://docs.google.com/document/d/1ncTNzlQYkZYwK2BoXrzPMTTmMKJYZ0KCPd4cQiIjqCM/edit?usp=sharing">GUI - Múltiples ventanas</a></p>
                             <p><a href="https://docs.google.com/document/d/1_pjFl3EJp5tQ4V10XRVwtbsCZY6EOGQdLuM26QQZRoo/edit?usp=sharing">GUI - Delegados y Eventos</a></p>
                             <p><a href="https://docs.google.com/document/d/1TIHNJ8lcWAXVaDTYCWvZQ2j9If-n8DG1OJgf0UAHNAY/edit?usp=sharing">GUI - Hilos y multihilos</a></p>
+                            <p><a href="https://docs.google.com/document/d/1jpQWfQ5m4vZMUMxm15y6pkJkRKPHGmNOqiEJquyM7hE/edit?usp=sharing">GUI - Elementos de Diseño</a></p>
+                            <p><a href="https://docs.google.com/document/d/1WRkvcS5LjwMNkUzKUoT1KYFiJgO3y9PwwBrnuG-W6CM/edit?usp=sharing">GUI - Elementos de Diseño 2</a></p>
+                            <p><a href="https://docs.google.com/document/d/1RZ49-ioRoJ5alPnqNBXpWHPpHWQlkhniwf5RRfIO2UE/edit?usp=sharing">GUI - Ejercios Adicionales</a></p>
+                            <br>
+                            <p><a href="https://docs.google.com/document/d/1F4QKFXoDDDyf33PWQQhcCl_PeMT9Uc76QekDge7tV3o/edit?usp=sharing">GUI - WPF</a></p>
+                            <p><a href="https://docs.google.com/document/d/15qwu0DLc9QF8TCWjmLE5DkhlHOVP7PfowHH_nbzRM78/edit?usp=sharing">GUI - WPF Maquetado</a></p>
+                            <p><a href="https://docs.google.com/document/d/1URR2dn2is_bGNVGOMsAPPh9rrejt1aMBeqQuUg5WwWo/edit?usp=sharing">GUI - WPF Estilos</a></p>
+                            <p><a href="https://docs.google.com/document/d/1blNXJw709U_oXE1oh8S0G75oPb2Fl9WyZ2O8G-k19uw/edit?usp=sharing">GUI - WPF Navegación y Databindig</a></p>
+                            <p><a href="https://docs.google.com/document/d/1Zp52rmcIDk7aT13l0RAHYa_pU5Wv-25VuRV2ik_yG3A/edit?usp=sharing">GUI - WPF typeConverter y MVVM</a></p>
+                            <p><a href="https://docs.google.com/document/d/1Hh-DbOEmwaaS5snFctvqWN_F-_a-4XY4q8hslBFIKNc/edit?usp=sharing">GUI - WPF Repaso</a></p>                            
+                            <p><a href="https://docs.google.com/document/d/1JCvnMgaM-qhWiFMHQbFFfpiQXWRh5uFdKE9qksdxCPk/edit?usp=sharing">Blend Introducción</a></p>
+                            <p><a href="https://docs.google.com/document/d/1AuwG0JplZ6Zw_4IK33L03-D7HaudyCjESPDs_Bg40wg/edit?usp=sharing">Blend Estados y comportamiento</a></p>
+                            <p><a href="https://docs.google.com/document/d/1zYO9t4sJQNsBTOJhly26CBofE4yiwIKl-vPi5ymtigg/edit?usp=sharing">Acciones, Funciones y Comnados</a></p>
+                            
+                            
+                            
                             <p><br/></p>
                             <span class="name">Recursos para prácticas</span>
                             <hr class="star-light">
