@@ -6,11 +6,13 @@ use VirtualRoom\Controller\Admon\vrLoginController;
 require_once __DIR__.'/../vendor/autoload.php';
 
 session_start();
-
+$response= false;
 try {
 	$controller = new vrLoginController();
-	$response = $controller->actionHandler();
-	echo $response;
+	$response = $controller->actionHandler($_POST);
 } catch (Exception $e) {
-	echo $e->getMessage();
+	$response= $e->getMessage();
+}
+finally{
+	echo $response;
 }

@@ -79,4 +79,12 @@ class vrCourse
     {
         $this->AddedBy = $value;
     }
+    /**
+     * Set the url of the image used for the thumbnail
+     *
+     */
+    public function setThumbnail($value)
+    {
+        $this->thumbnail=$value;
+    }
 }

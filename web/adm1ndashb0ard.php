@@ -1,69 +1,32 @@
 <?php
 namespace VirtualRoom\Web;
-session_start();
 use VirtualRoom\Controller\Admon\vrAdmonController;
-if(isset($_SESSION["user"])):
-    $controler= new vrAdmonController();
-    $controler->actionHandler();
-    require __DIR__ ."/../src/View/adm1nHeader.php";?>
-        <body>
-            <?php require __DIR__ ."/../src/View/adm1nNav.php"; 
-                  require __DIR__ ."/../src/View/adm1nAside.php";  ?>
-            <main class="col-md">
-                <section id="content" class="row">
-                    <?php 
-                    $controler->getGuideComponent();
-                    $controler->getCourseComponent();
-                    $controler->getModuleComponent();
-                    $controler->getExamComponent(); ?>
-                </section>
-                <section id="users" class="d-none">
-                    <article>
-                        <header>
-                            <h1>Usuarios</h1>
-                            <p>Administrar los usuarios</p>
-                        </header>
-                        <a href="#" class="btn btn-primary">Nuevo usuario</a>
-                        <a href="#" class="btn btn-info">Editar usuario</a>
-                        <a href="#" class="btn btn-danger">Eliminar usuario</a>
-                    </article>
-                    <article>
-                        <header>
-                            <h1>Lista de usuarios</h1>
-                            <p>usuarios registrados</p>
-                        </header>
-                        <table>
-                        </table>
-                    </article>
-                </section>
-                <section id="analitics" class="d-none">
-                    <article>
-                        <header>
-                            <h1>Estadisticas</h1>
-                            <p>Graficas</p>
-                        </header>
-                        <a href="#" class="btn btn-primary">Nuevo usuario</a>
-                        <a href="#" class="btn btn-info">Editar usuario</a>
-                        <a href="#" class="btn btn-danger">Eliminar usuario</a>
-                    </article>
-                    <article>
-                        <header>
-                            <h1>Lista de usuarios</h1>
-                            <p>usuarios registrados</p>
-                        </header>
-                        <table>
-                        </table>
-                    </article>
-                </section>
-            </main>
-</div>
-</div>
-</div>
+require_once __DIR__.'/../vendor/autoload.php';
+session_start();
 
-<?php
- require __DIR__ ."/../src/View/adm1nFooter.php";  
- else: ?>
-    <h1>Sesion no iniciada.</h1>
-<?php endif;
-header("Location:adm1nL0g1n.html");
-?>
+if(isset($_SESSION["user"]))
+{
+    $controller= new vrAdmonController();
+    $controller->setUser($_SESSION["user"]);
+
+    if(isset($_POST["sender"])){
+        $postAndFiles=$_POST;
+        if (isset($_FILES["courseThumb"])) {
+            $postAndFiles=array_merge($_POST,$_FILES);
+        }
+        
+        $controller->createActionHandler($$postAndFiles);
+    }
+    elseif ($_POST) {
+        $controller->deleteActionHandler($_POST);
+    }
+    
+    $controller->renderHeaderNavAndAside();
+    $compName= isset($_GET["componentName"])?$_GET["componentName"]:null;
+    $controller->componentHandler($compName);
+    $controller->renderFooter();             
+} 
+ else{
+    header("Location:adm1nL0g1n.html");
+    die(0);
+ }

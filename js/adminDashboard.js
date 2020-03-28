@@ -16,13 +16,13 @@ $(document).ready(function() {
         var td=editSetup();
         $( "#module-name" ).val( $( td[0] ).text() );
         $( "#module-id" ).val( $( td[1] ).text() );
-        $( "#course-id" ).val( $( td[2] ).text() );
+        $( "#co-id" ).val( $( td[2] ).text() );
     });
     $( "#editar-enlace" ).click(function(){
         var td=editSetup();
         $( "#link-description" ).val( $( td[0] ).text() );
         $( "#link-url" ).val( $( td[1] ).text() );
-        $( "#module-id" ).val( $( td[2] ).text() );
+        $( "#mod-id" ).val( $( td[2] ).text() );
     });
     $( "#eliminar-curso" ).click(function(){
         var td = $( ".selected" ).children();
@@ -42,12 +42,14 @@ $(document).ready(function() {
     function editSetup(){
         var td = $( ".selected" ).children();
         $( "h4[data-id='modaltitle']" ).text( "Editar" );
-        var btn=$( "#add-update").text("Actualizar");
+        var btn=$( ".add-update").text("Actualizar");
         btn.removeClass("btn-primary");
         btn.addClass("btn-warning");
         return td;
     }
 });
+
+//vista previa de imagen
 var input = document.querySelector('input');
 var preview = document.querySelector('.preview');
 var imagePlace= document.querySelector('.figure-img');

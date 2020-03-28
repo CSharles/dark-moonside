@@ -20,8 +20,14 @@ class vrAdmonRepository extends baseRepository
     {
         try{
             $statement=$this->pdo->prepare(
-                'INSERT INTO admon."vrLink" ("Description", "URL", "ModuleID", "Active", "Exam") VALUES(:desc, :url, :moduleid, :active, :exam)');
-            return $statement->execute([$link->getDescription(), $link->getURL(), $link->getModuleID(), $link->isActive()?1:0,$link->isExam()?1:0]);
+                'INSERT INTO admon."vrLink" ("Description", "URL", "ModuleID", "Active","Exam", "AddedBy")
+                 VALUES(:d, :u, :mid, :act, :e, :usr)
+                 ON CONFLICT ("Description","URL") 
+                 DO UPDATE
+                 SET "Description"= :d, "URL" = :u, "ModuleID" = :mid, "Active"= :act, "Exam"= :e, "AddedBy"= :usr');
+                 
+            return $statement->execute([$link->getDescription(), $link->getURL(), $link->getModuleID(), 
+            $link->isActive()?1:0,$link->isExam()?1:0,$link->getAddedBy()]);
         }
         catch(PDOException $e)
         {
@@ -33,9 +39,13 @@ class vrAdmonRepository extends baseRepository
     {
         try{
             $statement=$this->pdo->prepare(
-                'INSERT INTO admon."vrCourse" ("Name", "CourseID","Active") VALUES(:name, :id, :active)
-                ON CONFLICT ("CourseID") DO UPDATE SET "Name" = :name, "Active"=:active');
-            return $statement->execute([$course->getName(), $course->getCourseID(),$course->isActive()?1:0]);
+                'INSERT INTO admon."vrCourse" ("Name","CourseID","Active","AddedBy") 
+                VALUES(:n, :id, :act, :usr)
+                ON CONFLICT ("CourseID") 
+                DO UPDATE 
+                SET "Name" = :n, "Active"=:act');
+            return $statement->execute([$course->getName(), $course->getCourseID(),$course->isActive()?1:0,
+            $course->getAddedBy()]);
         }
         catch(PDOexception $e){
             $this->fillError($e);
@@ -46,8 +56,13 @@ class vrAdmonRepository extends baseRepository
     {
         try{
             $statement=$this->pdo->prepare(
-                'INSERT INTO admon."vrModule" ("Name", "ModuleID", "CourseID","Active") VALUES(?, ?, ?, ?)');
-            return $statement->execute([$module->getName(), $module->getModuleID(), $module->getCourseID(), $module->isActive()?1:0]);
+                'INSERT INTO admon."vrModule" ("Name","ModuleID","CourseID","Active","AddedBy") 
+                VALUES(:n, :mid, :cid, :act, :usr)
+                ON CONFLICT ("ModuleID")
+                DO UPDATE
+                SET "Name"= :n, "CourseID"= :cid, "Active"= :act');
+            return $statement->execute([$module->getName(), $module->getModuleID(), $module->getCourseID(), 
+            $module->isActive()?1:0, $module->getAddedBy()]);
         }
         catch(PDOexception $e){
             $this->fillError($e);
@@ -95,9 +110,9 @@ class vrAdmonRepository extends baseRepository
     #endregion
 
 
-    Public function getDataFromTable(string $tableName){
+    Public function getDataFromTable(string $tableName, int $userId){
         $columns="";
-        $conditions='"Active" =true';
+        $conditions='"Active" =true AND "AddedBy"='.$userId;
         switch ($tableName) {
             case 'vrCourse':
                 $columns='"Name", "CourseID"';

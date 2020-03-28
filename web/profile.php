@@ -7,44 +7,37 @@ require_once __DIR__.'/../vendor/autoload.php';
 
 session_start();
 
-$controller= new vrProfileController();
-if (isset($_POST['editView'])||isset($_POST['registrar'])) {
-    $controller->actionHandler($_POST);
-}
-if(isset($_SESSION['setup'])){
-    $controller->actionHandler($_SESSION);
-}
-if(!$controller->getGeneralView()&&!$controller->getInitialUserView()){
-    $userdata=['nick'=>$_POST['username'],
-    'pwd'=>$_POST['password'],
-    'name'=>$_POST['name'],
-    'lastn'=>$_POST['lastname'],
-    'role'=>$_POST['role'],
-    'email'=>$_POST['email']
-    ];
-    $controller->createUser($userdata);
-}
-if(isset($_SESSION['user']) && $_SESSION['user']> 0){
-    unset($_SESSION['setup']);
-}
-if($_SESSION['user']){
-    
-    require_once __DIR__."/../src/View/adm1nHeader.php";
-    require_once __DIR__."/../src/View/adm1nNav.php";
+if(isset($_SESSION['user'])){
+    $controller= new vrProfileController();
+
+    if (isset($_REQUEST['editView'])||isset($_REQUEST['registrar'])) {
+        $controller->actionHandler($_REQUEST);
+    }
+    if(isset($_SESSION['setup'])){
+        $controller->actionHandler($_SESSION);
+    }
+    if(!$controller->getGeneralView()&&!$controller->getInitialUserView()){
+        $controller->createAdmin($_POST);
+    }
+    if(isset($_SESSION['user']) &&($_SESSION['user']> 0)){
+        unset($_SESSION['setup']);
+    }
+
+    $controller->renderHeaderAndNav();
+
     if($controller->getGeneralView()){
-        require_once __DIR__."/../src/View/adm1nAside.php";
-        require_once __DIR__."/../src/View/adm1nProfileBody.php";
+        $controller->renderGeneralView($_SESSION['user']);
+    }
+    elseif($controller->getInitialUserView()){
+        $controller->renderInitialAdminView();
     }
     else{
-        if($controller->getInitialUserView()){
-            require_once __DIR__."/../src/View/initialAdm1nProfile.php";
-        }
-        else{
-            require_once __DIR__."/../src/View/editAdm1nProfileBody.php";
-        }
+        $controller->renderEditView($_SESSION['user']);
     }
-    require_once __DIR__."/../src/View/adm1nFooter.php";
+
+    $controller->renderFooter();
 }
 else{
     header("Location:adm1nL0g1n.html");
+    die(0);
 }

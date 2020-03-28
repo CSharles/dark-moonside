@@ -1,8 +1,8 @@
 
 function verifyLogin()
 {
-    var json_upload =  "data=" + JSON.stringify({user: $("#username-email").val(),  password: $("#password").val()});
-    const url='../src/Controller/Admon/vrLoginController.php';
+    var json_upload =  "data=" + JSON.stringify({user: $("#username-email").val(),  password: $("#password").val(),role:"adm"});
+    const url='login.php';
     let fetchData={
         method: 'POST',
         headers: {
@@ -55,14 +55,13 @@ function redirect(pageId)
 {
     switch (pageId) {
         case 1:
-            setTimeout(() => {
-                location.href = "adm1ndashb0ard.php"}, 1500)
+            setTimeout(()=>{location.href="adm1ndashb0ard.php"},1500)
             break;
         case 2:
-            location.href = "profile.php";
+            setTimeout(()=>{location.href="profile.php";},1000);
             break;
         case 3:
-            location.href= "profile.php";
+            setTimeout(()=>{location.href="profile.php";},500);
         default:
             break;
     }
