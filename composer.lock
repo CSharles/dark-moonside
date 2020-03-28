@@ -7,7 +7,6 @@
     "content-hash": "a5fcd389064daf7153a971af1d218cbc",
     "packages": [
         {
-        {
             "name": "heroku/heroku-buildpack-php",
             "version": "v130",
             "source": {
