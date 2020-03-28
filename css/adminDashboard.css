@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700|Raleway');
+body {
+    background: -webkit-radial-gradient(#414141 10%, #111);
+    background: -moz-radial-gradient(#414141 10%, #111);
+    background: radial-gradient(#414141 10%, #111);
+    font-family: 'Open Sans', sans-serif!important; 
+    height: 100vh;
+}
+section article{
+    margin: 0 0 100px 0;
+}
+aside p, header h1, header p{
+    color: #fff;
+}
+header h2{
+    color: #aaa;
+}
+header p{
+    margin: 0 auto;
+}
+.selected{
+    background: #558!important;
+}
+#side-panel{
+    height: 100%;
+}
+.table-wrapper{
+    max-width: 800px;
+}
+.controls{
+    padding: 0 0 0 20px;
+}
+.controls>.btn {
+    margin-top: 10px;
+    display: block;
+}
+.bk-color-1{
+    background:#A8A8C3;
+}
+#page-header{
+    background: #558;
+    border-top: #aaa 1px solid;
+    border-bottom: #aaa 1px solid;
+    margin-bottom: 2em;
+}
+#user-resume{
+    border-top: #558 5px solid;
+}
+#user-info, #user-activity{
+    margin-bottom: 0px;
+}
+#user-info{
+    border-top: #558 15px solid;
+    width: 100%;
+}
+#user-resume .badge{
+    white-space: normal;
+}
+.main-text{
+    font-family: 'Raleway',sans-serif;
+    font-size: 100%;
+}
+h4.main-text{
+    font-size: 1.25rem;
+}
+#user-activity h4{
+    margin-bottom: 0.75rem;
+}
+/*-the checkbox switch style*/
+ /* The switch - the box around the slider */
+ .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  /* Hide default HTML checkbox */
+  .switch input {display:none;}
+  
+  /* The slider */
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  .slider.round:before {
+    border-radius: 50%;
+  } 
+  .switch-label{
+      line-height: 2;
+  }
+/*edit*/
+form input[type=file]{opacity:0;}
+form label.badge:hover{ transform: scale(1.05); opacity:0.9;}
