@@ -27,8 +27,5 @@
             "VirtualRoom\\Test\\":"src/Test/",
             "VirtualRoom\\Web\\":"web/"
         }
-    },
-    "config": {
-        "vendor-dir": "/vendor"
     }
 }
