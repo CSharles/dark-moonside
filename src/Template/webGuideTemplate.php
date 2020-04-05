@@ -6,6 +6,7 @@ echo <<<WGT
                 <hr class="pencil">
     </header>
     <section class="d-flex flex-row justify-content-center">
+        <div clas="d-flex flex-column">
 WGT;
         if(!empty($guides)) {
             foreach($guides as $guide){
@@ -13,5 +14,6 @@ WGT;
             }
         }
         else echo'<p>No hay guias activas</p>';
-echo "</section>
+echo "</div>
+</section>
 </article>";

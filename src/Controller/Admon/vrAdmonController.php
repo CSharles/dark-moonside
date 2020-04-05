@@ -91,10 +91,10 @@ class vrAdmonController extends baseController
                 }
                 break;
             case "module":
-                if(isset($request["name"],$request["moduleId"],$request["courseId"])){
+                if(isset($request["moduleName"],$request["moduleId"],$request["courseId"])){
                     $module = new vrModule();
                     $module->setModuleID($request["moduleId"]);
-                    $module->setName($request["name"]);
+                    $module->setName($request["moduleName"]);
                     $module->setCourseID($request["courseId"]);
                     $module->setAddedBy($this->userId);
                     
@@ -107,7 +107,7 @@ class vrAdmonController extends baseController
                 }
                 break;        
             case "link":
-                if(isset($request["description"],$request["linkUrl"],$request["moduleId"])){
+                if(isset($request["guideName"],$request["linkUrl"],$request["moduleId"])){
                     $link = new vrLink();
                     $link->setDescription($request["description"]);
                     $link->setURL($request["linkUrl"]);
@@ -254,13 +254,10 @@ class vrAdmonController extends baseController
         "Description"=>"Vista general de los modulos"];
         $Controls=["Target"=>"#newModule","DeleteElement"=>"deleteModule",
         "EditId"=>"editar-modulo","DeleteId"=>"eliminar-modulo","FormId"=>"deleteModuleForm"];
-        $ModalConent=["ModalId"=>"newModule","ModalTitle"=>"Nuevo Modulo","ModalInputCount"=>3,
-        "Inputs"=>[
-            ["LabelText"=>"Nombre del modulo","Name"=>"name","Id"=>"module-name","PlaceHolder"=>"Nombre del modulo"],
-            ["LabelText"=>"Código del modulo","Name"=>"moduleId","Id"=>"module-id","PlaceHolder"=>"Código del modulo"],
-            ["LabelText"=>"Curso al que pertenece","Name"=>"courseId","Id"=>"co-id","PlaceHolder"=>"Código del curso"]
-        ],
-        "ModalButton"=>"module"];
+        $ModalConent=["ModalId"=>"newModule","ModalTitle"=>"Nuevo Modulo",
+            "view"=>'/../View/Admon/moduleModal.php',
+            "ModalButton"=>"module"
+        ];
         $component="modules";
         return $this->createComponent($component,$Headers,$Controls,$ModalConent);
     }
@@ -269,13 +266,10 @@ class vrAdmonController extends baseController
         "Description"=>"Vista general de las guias"];
         $Controls=["Target"=>"#newLink","DeleteElement"=>"deleteLink",
         "EditId"=>"editar-enlace","DeleteId"=>"eliminar-enlace","FormId"=>"deleteLinkForm"];
-        $ModalConent=["ModalId"=>"newLink","ModalTitle"=>"Nuevo enlace","ModalInputCount"=>3,
-        "Inputs"=>[
-            ["LabelText"=>"Descripcion del enlace","Name"=>"description","Id"=>"link-description","PlaceHolder"=>"Titulo del enlace"],
-            ["LabelText"=>"URL del enlace","Name"=>"linkUrl","Id"=>"link-url","PlaceHolder"=>"http://wwww.example.com"],
-            ["LabelText"=>"Modulo al que pertenece","Name"=>"moduleId","Id"=>"mod-id","PlaceHolder"=>"Id del módulo"]
-        ],
-        "ModalButton"=>"link"];
+        $ModalConent=["ModalId"=>"newLink","ModalTitle"=>"Nueva Guía",
+            "view"=>'/../View/Admon/guideModal.php',
+            "ModalButton"=>"link"
+        ];
         $component="links";
         return $this->createComponent($component,$Headers,$Controls,$ModalConent);
     }

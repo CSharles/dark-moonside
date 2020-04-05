@@ -20,7 +20,7 @@ $(document).ready(function() {
     });
     $( "#editar-enlace" ).click(function(){
         var td=editSetup();
-        $( "#link-description" ).val( $( td[0] ).text() );
+        $( "#guide-name" ).val( $( td[0] ).text() );
         $( "#link-url" ).val( $( td[1] ).text() );
         $( "#mod-id" ).val( $( td[2] ).text() );
     });

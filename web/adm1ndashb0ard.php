@@ -15,7 +15,7 @@ if(isset($_SESSION["user"]))
             $postAndFiles=array_merge($_POST,$_FILES);
         }
         
-        $controller->createActionHandler($$postAndFiles);
+        $controller->createActionHandler($postAndFiles);
     }
     elseif ($_POST) {
         $controller->deleteActionHandler($_POST);
