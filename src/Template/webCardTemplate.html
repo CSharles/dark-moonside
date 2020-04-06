@@ -1,0 +1,11 @@
+<?php 
+echo <<<CARD
+<div class="card w-25 mx-1 my-1 text-center text-dark bg-light">
+  <img src="{$thumbnail}" class="card-img-top w-50 mx-auto" alt="{$name}">
+  <div class="card-body">
+    <h5 class="card-title">{$name}</h5>
+    <p class="card-text"></p>
+    <a href="{$href}" class="btn btn-primary text-white">Acceder</a>
+  </div>
+</div> 
+CARD;

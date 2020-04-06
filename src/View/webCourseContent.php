@@ -38,18 +38,20 @@ $name= $this->course->getName();
         </article>
     </section>
     <section class="container-fluid success" id="modules">
-        <article class="d-flex flex-wrap align-items-center justify-content-center">
+        <article class="d-flex flex-row justify-content-center h-100">
+            <div class="d-flex flex-column">
             <?php //Create the tiles for each module
                 if (is_array($modules) && !empty($modules)) {
                     foreach ($modules as $module){ 
                         $thumbnail=isset($control['thumbnail'])?$control['thumbnail']:"../img/profile.png";
                         $href="#".$module->getModuleID();
                         $name=$module->getName();
-                        include __DIR__."/../Template/webTileTemplate.php";
+                        include __DIR__."/../Template/webModuleTemplate.html";
                     }
                 }
                 else echo'<p>No hay modulos activos</p>';
             ?>
+            </div>
         </article> 
         <?php // An Article element containing the guides for each module
             if (is_array($modules) && ! empty($modules)) {
