@@ -2,33 +2,22 @@
     <header>
         <h1 class="d-none">englishcomputer</h1>
     </header>
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-        <a class="navbar-brand" href=".">
+    <nav class="navbar navbar-expand-lg fixed-top bg-dark navbar-dark page-scroll">
+        <a class="navbar-brand" href="..">
             <img style="max-width:10em; margin-top: -0.45em;"src="../img/logo.svg" alt="Logo de englishcomputer">
         </a>
         <h2 class="d-none">menú de navegación</h2>
-        <button type="button" class="btn navbar-toggle d-md-none" data-toggle="collapse" data-target="#menu-collapse">
-            <span class="sr-only">Activar navegación</span>
-            <span class="fas fa-bars"></span>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu-collapse" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse ml-auto d-md-block" id="menu-collapse">
-            <ul class="navbar-nav align-items-center">
-                <li class="d-none mx-2 nav-item">
-                    <a href="#page-top"></a>
-                </li>
-                <li class="page-scroll mx-2 nav-item">
-                    <a href="?">Cursos</a>
-                </li>
-                <li class="page-scroll mx-2 nav-item">
-                    <a href="./#about">Acerca de</a>
-                </li>
-                <!--<li class="page-scroll">
-                    <a href="#login">Acceder</a>
-                </li>-->
-                <li class="page-scroll mx-2 nav-item">
-                    <a href=".">
-                        <span class=" btn btn-primary">Inicio</span></a>
-                </li>
-            </ul>            
+        <div class="collapse navbar-collapse" id="menu-collapse">
+            <div class="navbar-nav ml-auto">
+                <a class="d-none mt-2  nav-item  nav-link" href="#page-top"></a>
+                <a class="page-scroll mt-2 nav-item  nav-link" href="?">Cursos</a>
+                <a  class="page-scroll mt-2 nav-item  nav-link" href="../#about">Acerca de</a>
+            <!--<a class="page-scroll" href="#login">Acceder</a>-->
+                <a class="page-scroll nav-item  nav-link" href="..">
+                    <span class=" btn btn-primary">Inicio</span></a>
+            </div>            
         </div>
     </nav>

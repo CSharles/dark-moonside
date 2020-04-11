@@ -5,119 +5,101 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Plataforma de cursos en linea. Cursos de Inglés, Ofimática, Diseño Gráfico, Diseño Web y más.">
-        <meta name="keywords" content="Inglés,Programación,Santa,Ana,Computación,Diseño,Web,Gráfico,Curso,Niveles,Basico,Intermedio,Avanzado,Office,El,Salvador">
+        <meta name="keywords" content="Inglés,Programación,SantaAna,Ana,Computación,Diseño,Web,Gráfico,Curso,Niveles,Basico,Intermedio,Avanzado,Office,El,Salvador">
         <meta name="author" content="Csharls">
-        <title>englishcomputer - Cursos de Inglés y computación - </title>
-        <link rel="stylesheet" href="./css/bootstrap.min.css">
+        <title>Englishcomputer - Cursos de Inglés y computación - </title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat:wght@400;700&display=swap">
         <link rel="stylesheet" href="./css/freelancer.min.css">
         <link rel="stylesheet" href="./css/virtualroom.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat:400,700" type="text/css">
-        <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Lato:400' type='text/css'>
         <!--[if lt IE 9]>
             <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
             <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
     <body id="page-top" class="index">
-        <header>
-        	<h1 class="hidden">englishcomputer</h1>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <img class="img-responsive" src="./img/profile.png" alt="imagen estudiante">
-                        <div class="intro-text">
-                            <span class="name">APRENDE</span>
-                            <hr class="star-light">
-                            <span class="skills">Inglés - Computación - Diseño Grafico - Diseño Web</span>
-                        </div>
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark page-scroll" role="navigation">
+            <h2 class="d-none">menú de navegación</h2>
+            <a class="navbar-brand" href="#page-top">
+                <img style="max-width:10em; margin-top: -0.45em;" class="img-fluid" src="./img/logo.svg" alt="Logo de englishcomputer">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMenu" aria-controls="navbarMenu" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <div class="navbar-nav ml-auto ">
+                    <a class="nav-item nav-link d-none" href="#page-top"></a>
+                    <a class="nav-item nav-link mt-2" href="#portfolio">Cursos</a>
+                    <a class="nav-item nav-link mt-2" href="#about">Acerca de</a>
+                    <!--<a class="nav-item nav-link page-scroll" href="#login">Acceder</a>-->
+                    <a class="nav-item nav-link" href="web/virtualroom.php">
+                        <button class="btn btn-primary"> Aula Virtual</button>
+                    </a>
+                </div>
+            </div>
+        </nav>
+        <header class="container-fluid">
+            <div class="row">
+                <div class="col mt-5 pt-5 h-100">
+                    <h1 class="d-none">Englishcomputer</h1>
+                    <img class="img-fluid" src="./img/profile.png" alt="imagen estudiante">
+                    <div class="intro-text mb-5">
+                        <span class="name">APRENDE</span>
+                        <hr class="star-light">
+                        <span class="skills">Inglés - Computación - Diseño Grafico - Diseño Web</span>
                     </div>
                 </div>
             </div>
         </header>
-        <nav class="navbar navbar-default navbar-fixed-top">
-        	<h2 class="hidden">menú de navegación</h2>
-            <div class="container-fluid">
-                <div class="navbar-header page-scroll">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                        <span class="sr-only">Activar navegación</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#page-top">
-                        <img style="max-width:10em; margin-top: -0.45em;" class="img-responsive" src="./img/logo.svg" alt="Logo de englishcomputer"></a>
-                </div>
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li class="hidden">
-                            <a href="#page-top"></a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="#portfolio">Cursos</a>
-                        </li>
-                        <li class="page-scroll">
-                            <a href="#about">Acerca de</a>
-                        </li>
-                        <!--<li class="page-scroll">
-                            <a href="#login">Acceder</a>
-                        </li>-->
-                        <li class="page-scroll">
-                        	<a href="web/virtualroom.php">
-                                <span class="btn-aula">Aula Virtual</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+
         <section id="portfolio">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12 text-center">
+                    <div class="col text-center">
                         <h2>Cursos</h2>
                         <hr class="star-primary">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-4 portfolio-item">
+                <div class="row no">
+                    <div class="col-md col-6 portfolio-item">
                         <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
                             <div class="caption">
                                 <div class="caption-content">
                                     <i class="fa fa-search-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img src="./img/portfolio/circus.png" class="img-responsive" alt="imagen curso de inglés">
+                            <img src="./img/portfolio/circus.png" class="img-fluid" alt="imagen curso de inglés">
                         </a>
                     </div>
-                    <div class="col-sm-4 portfolio-item">
+                    <div class="col-md col-6 portfolio-item">
                         <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
                             <div class="caption">
                                 <div class="caption-content">
                                     <i class="fa fa-search-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img src="./img/portfolio/cake.png" class="img-responsive" alt="">
+                            <img src="./img/portfolio/cake.png" class="img-fluid" alt="">
                         </a>
                     </div>
-                    <div class="col-sm-4 portfolio-item">
+                    <div class="col-md col-6 portfolio-item">
                         <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
                             <div class="caption">
                                 <div class="caption-content">
                                     <i class="fa fa-search-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img src="./img/portfolio/cabin.png" class="img-responsive" alt=" imagen curso de diseño">
+                            <img src="./img/portfolio/cabin.png" class="img-fluid" alt=" imagen curso de diseño">
                         </a>
                     </div>           
-                    <div class="col-sm-4 portfolio-item">
+                    <div class="col-md col-6 portfolio-item">
                         <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
                             <div class="caption">
                                 <div class="caption-content">
                                     <i class="fa fa-search-plus fa-3x"></i>
                                 </div>
                             </div>
-                            <img src="./img/portfolio/submarine.png" class="img-responsive" alt="">
+                            <img src="./img/portfolio/submarine.png" class="img-fluid" alt="">
                         </a>
                     </div>
                 </div>
@@ -126,20 +108,20 @@
         <section class="success" id="about">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12 text-center">
+                    <div class="col text-center">
                         <h2>Nosotros</h2>
                         <hr class="star-light">
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-4 col-lg-offset-2">
+                    <div class="col-lg-4 offset-lg-2">
                         <p>Las aulas virtuales de englishcomputer estan pensadas como apoyo a la capacitación de personas con aspiraciones hacia un entorno profesional; en areas tecnicas como: inglés y computación.</p>
                         <p></p>
                     </div>
                     <div class="col-lg-4">
                         <p></p>
                     </div>
-                    <div class="hidden col-lg-8 col-lg-offset-2 text-center">
+                    <div class="d-none col-lg-8 offset-lg-2 text-center">
                         <a href="webLogin.php?" class="btn btn-lg btn-outline">
                             <i class="fa fa-download"></i>Registrarse
                         </a>
@@ -150,23 +132,23 @@
         <section id="login">
             <div class="container">
                 <div class="row">
-                    <div class="col-lg-12 text-center">
+                    <div class="col text-center">
                         <h2>Entrar</h2>
                         <hr class="star-primary">
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
+                    <div class="col-lg-8 offset-lg-2">
                         <form method="post" action="http://englishcomputer.tk/aulavirtual/login/index.php" id="login" novalidate>
                             <div class="row control-group">
-                                <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <div class="form-group col floating-label-form-group controls">
                                     <label>Nombre de usuario</label>
                                     <input type="text" class="form-control" placeholder="Nombre de usuario" name="username" id="username" required data-validation-required-message="Porfavor ingrese su nombre de usuario">
                                     <p class="help-block text-danger"></p>
                                 </div>
                             </div>
                             <div class="row control-group">
-                                <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <div class="form-group col floating-label-form-group controls">
                                     <label>Contraseña</label>
                                     <input type="password" class="form-control" placeholder="contraseña" name="password" id="password" required data-validation-required-message="Porfavor ingrese su correo electronico">
                                     <p class="help-block text-danger"></p>
@@ -174,7 +156,7 @@
                             </div>
                             <br>
                             <div class="row control-group">
-                                <div class="form-group col-xs-12 floating-label-form-group controls">
+                                <div class="form-group col floating-label-form-group controls">
                                     <span><a href="aulavirtual/login/forgot_password.php">¿Olvido su nombre de usuario o contraseña?</a>
                                     </span>                               
                                 </div>
@@ -195,7 +177,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="footer-col col-md-4">
-                            <p class="hidden"><a href="/aulavirtual/login/signup.php?"><i class="fa fa-lg fa-sign-in"></i> Registrase</a></p>
+                            <p class="invisible"><a href="/aulavirtual/login/signup.php?"><i class="fa fa-lg fa-sign-in"></i> Registrase</a></p>
                         </div>
                         <div class="footer-col col-md-4">
                             <span>CURSOS</span>
@@ -215,7 +197,7 @@
                             </ul>            
                         </div>
                         <div class="footer-col col-md-4">
-                            <p class="hidden"><a href="/avirtual/login"><i class="fa fa-lg fa-user"></i> Iniciar Sesión</a></p>
+                            <p class="invisible"><a href="/avirtual/login"><i class="fa fa-lg fa-user"></i> Iniciar Sesión</a></p>
                         </div>
                     </div>
                 </div>
@@ -230,7 +212,7 @@
                 </div>
             </div>
         </footer>
-        <div class="scroll-top page-scroll visible-xs visible-sm">
+        <div class="scroll-top page-scroll d-none">
             <a class="btn btn-primary" href="#page-top">
                 <i class="fa fa-chevron-up"></i>
             </a>
@@ -246,11 +228,11 @@
                     </div>
                     <div class="container">
                         <div class="row">
-                            <div class="col-lg-8 col-lg-offset-2">
+                            <div class="col-lg-8 offset-lg-2">
                                 <div class="modal-body">
                                     <h2>Curso de Inglés</h2>
                                     <hr class="star-primary">
-                                    <img src="./img/portfolio/circus.png" class="img-responsive img-centered" alt="">
+                                    <img src="./img/portfolio/circus.png" class="img-fluid img-centered" alt="">
                                     <p>Curso destinado a la enseñanza del idioma inglés en el cual se  desarrollan las cuatro habilidades: Listening, Speaking, Reading y Writing. Para ello se han creado tres módulos: Básico, Intermedio y Avanzado, los cuales a su vez se dividen en 4 niveles.</p>
                                     <ul class="list-inline item-details">
                                         <li>Duración estimada:
@@ -279,7 +261,7 @@
                                 <div class="modal-body">
                                     <h2>Diseño Web</h2>
                                     <hr class="star-primary">
-                                    <img src="./img/portfolio/cake.png" class="img-responsive img-centered" alt="">
+                                    <img src="./img/portfolio/cake.png" class="img-fluid img-centered" alt="">
                                     <p>Diseño web esta orientado al desarrollo de paginas web utilizando las ultimas tecnologías adquiriendo el conocimiento necesario para maquetar, desarrollar y poner en producción una pagina web tanto estatica como dinamica.</p>
                                     <ul class="list-inline item-details">
                                         <li>Herramientas:
@@ -316,7 +298,7 @@
                                 <div class="modal-body">
                                     <h2>Diseño gráfico</h2>
                                     <hr class="star-primary">
-                                    <img src="./img/portfolio/cabin.png" class="img-responsive img-centered" alt="">
+                                    <img src="./img/portfolio/cabin.png" class="img-fluid img-centered" alt="">
                                     <p>Diseño gráfico esta pensado en desarrollar habilidades para el dibujo digital y la edición de fotografias. En este curso el estudiante obtendrá tecnicas de edición y montajes de fotografias, diseño y dibujo digital.</p>
                                     <ul class="list-inline item-details">
                                         <li>Herramientas
@@ -349,8 +331,8 @@
                                 <div class="modal-body">
                                     <h2>Computación</h2>
                                     <hr class="star-primary">
-                                    <img src="./img/portfolio/submarine.png" class="img-responsive img-centered" alt="">
-                                    <p>Los cursos de computacion estan diseñados para que el estudiante adquiera las habilidades necesarias para manejar los programas mas utilizados en las oficinas, obteniendo asi las herramientas para desarrollar cartas y documentos profesionales, presentaciones y publicaciones de forma profesional.</p>
+                                    <img src="./img/portfolio/submarine.png" class="img-fluid img-centered" alt="">
+                                    <p>Los cursos de computación estan diseñados para que el estudiante adquiera las habilidades necesarias para manejar los programas mas utilizados en las oficinas, obteniendo asi las herramientas para desarrollar cartas y documentos profesionales, presentaciones y publicaciones de forma profesional.</p>
                                     <ul class="list-inline item-details">
                                         <li>Herramientas:
                                             <strong>Word, Excel, PowerPoint, Publisher.
@@ -369,12 +351,39 @@
                 </div>
             </div>
         </main>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous" defer></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous" defer></script>
         <script src="./js/jquery.js"></script>
-        <script src="./js/virtualroom.js"></script>
-        <script src="./js/bootstrap.min.js"></script>
-        <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-        <script src="./js/classie.js"></script>
-        <script src="./js/cbpAnimatedHeader.min.js"></script>
-        <script src="./js/freelancer.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js" crossorigin="anonymous" defer></script>
+        <script src="./js/freelancer.js" defer></script>
+        <script>
+                var year= new Date();
+                document.querySelector("span#year").textContent= year.getFullYear().toString();
+
+                var navHeight = $('.navbar').height();
+                var windowH = $(window).height();
+                var scrollTopbtn=document.querySelector("div.scroll-top");
+
+                $('section').height(windowH);
+                $(document).scroll(function(){
+                    var scrolltop = $(this).scrollTop();
+                    $('section').each(function(index, element) {
+                        if(scrolltop>0){
+                            scrollTopbtn.classList.remove("d-none");
+                        }
+                        else{
+                            scrollTopbtn.classList.add("d-none");
+                        }
+                        if(scrolltop + navHeight> $(this).offset().top && scrolltop + navHeight  <= $(this).offset().top + $(this).height()){	  
+                            var id = $(this).attr('id');
+                            $('a[href="#'+id+'"]').addClass('active');  
+                        }else{                         
+                            var id = $(this).attr('id');
+                            $('a[href="#'+id+'"]').removeClass('active');
+                        }
+                    });
+                });
+        </script>
     </body>
 </html>
